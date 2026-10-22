@@ -25,7 +25,7 @@
         /* glow lebih halus & gelap saat dark (hindari "light leak" putih) */
         [data-theme="dark"] body {
             background:
-                radial-gradient(900px 500px at 100% 0%, rgba(74,73,176,.18), transparent 60%),
+                radial-gradient(900px 500px at 100% 0%, rgba(26,109,187,.18), transparent 60%),
                 var(--color-bg);
         }
 

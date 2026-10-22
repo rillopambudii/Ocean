@@ -87,9 +87,9 @@
             font-size: 13px;
         }
         [data-theme="dark"] .badge-soft {
-            background: rgba(74,73,176,.20);
+            background: rgba(26,109,187,.20);
             color: var(--color-primary);
-            border-color: rgba(74,73,176,.45);
+            border-color: rgba(26,109,187,.45);
         }
 
         .footer { color: var(--color-text-muted); font-size: 13px; padding: 30px 0; }

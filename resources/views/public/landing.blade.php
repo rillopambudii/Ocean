@@ -103,9 +103,9 @@
         }
 
         [data-theme="dark"] .lp-eyebrow {
-            background: rgba(74, 73, 176, .2);
+            background: rgba(26,109,187,.20);
             color: var(--color-primary);
-            border-color: rgba(74, 73, 176, .45);
+            border-color: rgba(26,109,187,.45);
         }
 
         .lp-hero-title {
@@ -181,7 +181,7 @@
         .lp-card .lp-card-veil {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(26, 26, 77, 0) 35%, rgba(26, 26, 77, .82) 100%);
+            background: linear-gradient(180deg, rgba(10, 37, 64, 0) 35%, rgba(10, 37, 64, .82) 100%);
         }
 
         .lp-card .lp-card-label {
@@ -326,7 +326,7 @@
         }
 
         [data-theme="dark"] .lp-feature-ico {
-            background: rgba(74, 73, 176, .2);
+            background: rgba(26,109,187,.20);
             color: var(--color-primary);
         }
 
@@ -407,7 +407,7 @@
         }
 
         .lp-btn-white:hover {
-            background: #f1f1fb;
+            background: var(--color-primary-50);
             color: var(--color-primary-700);
         }
 
