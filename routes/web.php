@@ -103,6 +103,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('admin/budgets/plan', [BudgetController::class, 'savePlan']);
 
         // Departemen Crewing
+        Route::get('admin/crew-rotation', [CrewController::class, 'rotation']);
         Route::resource('admin/crews', CrewController::class);
         Route::post('admin/crews/{crew}/certificates', [CrewController::class, 'storeCertificate']);
         Route::delete('admin/crew-certificates/{certificate}', [CrewController::class, 'destroyCertificate']);
@@ -163,6 +164,7 @@ Route::middleware(['auth'])->group(function () {
     */
     Route::middleware(['role:Admin Operation'])->group(function () {
         Route::resource('admin/vessel-contracts', VesselContractController::class)->except('show');
+        Route::get('admin/renewal-queue', [VesselCertificateController::class, 'renewalQueue']);
         Route::resource('admin/vessel-certificates', VesselCertificateController::class);
         Route::resource('admin/maintenance-checklists', MaintenanceChecklistController::class);
 

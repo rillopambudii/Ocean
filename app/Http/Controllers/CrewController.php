@@ -45,6 +45,25 @@ class CrewController extends Controller
         );
     }
 
+    /**
+     * Kru yang sedang atau akan naik kapal, per kapal, diurutkan dari sign off terdekat.
+     */
+    public function rotation()
+    {
+        $groups = Crew::with('location')
+            ->where(fn ($query) => $query->whereNull('sign_off_date')->orWhereDate('sign_off_date', '>=', today()))
+            ->orderByRaw('sign_off_date is null')
+            ->orderBy('sign_off_date')
+            ->get()
+            ->groupBy(fn ($crew) => $crew->location?->name ?? 'Belum ditempatkan')
+            ->sortKeys();
+
+        return view(
+            'admin.crews.rotation',
+            compact('groups')
+        );
+    }
+
     public function create()
     {
         $crew = null;

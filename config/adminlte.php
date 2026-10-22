@@ -462,6 +462,11 @@ return [
                     'icon' => 'fas fa-certificate',
                 ],
                 [
+                    'text' => 'Renewal & Survey Queue',
+                    'url'  => 'admin/renewal-queue',
+                    'icon' => 'fas fa-hourglass-half',
+                ],
+                [
                     'text' => 'Operational Follow-up',
                     'url'  => 'admin/follow-up/operation',
                     'icon' => 'fas fa-clipboard-check',
@@ -538,6 +543,11 @@ return [
                     'text' => 'Crew Register',
                     'url'  => 'admin/crews',
                     'icon' => 'fas fa-id-card',
+                ],
+                [
+                    'text' => 'Crew Rotation Plan',
+                    'url'  => 'admin/crew-rotation',
+                    'icon' => 'fas fa-sync-alt',
                 ],
                 [
                     'text' => 'Dokumen Crewing',
