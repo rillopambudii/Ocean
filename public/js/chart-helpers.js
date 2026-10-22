@@ -1,13 +1,13 @@
 /* ============================================================
-   PKLP — Chart Helpers (Fase 4)
+   Oceanindo — Chart Helpers (Fase 4)
    Pembungkus Chart.js bersama untuk admin & dashboard publik.
    - Theme-aware: warna teks/grid dibaca dari token CSS, ikut dark/light.
    - Status semantik (Open/Overdue/Closed/Valid/Expired/…).
    - Empty-state, tooltip locale id-ID (nilai + %), reduced-motion.
-   - Re-render saat tema berubah (event 'pklp:themechange').
-   Dipakai: PKLPCharts.line/bar/proportion(id, labels, data, opts)
+   - Re-render saat tema berubah (event 'ocean:themechange').
+   Dipakai: OceanCharts.line/bar/proportion(id, labels, data, opts)
    ============================================================ */
-window.PKLPCharts = (function () {
+window.OceanCharts = (function () {
     'use strict';
 
     var registry = [];
@@ -25,7 +25,7 @@ window.PKLPCharts = (function () {
         'expiring': '#F59E0B', 'expiring soon': '#F59E0B', 'akan habis': '#F59E0B',
         'draft': '#94A3B8', 'n/a': '#94A3B8'
     };
-    var CATEGORICAL = ['#343399','#3B82F6','#0EA5E9','#06B6D4','#D97706','#F59E0B','#7C3AED','#DB2777'];
+    var CATEGORICAL = ['#0057A8','#ED1C24','#0EA5E9','#06B6D4','#D97706','#F59E0B','#7C3AED','#DB2777'];
 
     function cssVar(name, fallback) {
         var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -36,7 +36,7 @@ window.PKLPCharts = (function () {
             text: cssVar('--color-text-muted', '#475569'),
             grid: cssVar('--color-border', '#E2E8F0'),
             surface: cssVar('--color-surface', '#FFFFFF'),
-            primary: cssVar('--color-primary-600', '#343399')
+            primary: cssVar('--color-primary-600', '#0057A8')
         };
     }
     function colorFor(label, i) {
@@ -166,7 +166,7 @@ window.PKLPCharts = (function () {
             ch.update('none');
         });
     }
-    window.addEventListener('pklp:themechange', onThemeChange);
+    window.addEventListener('ocean:themechange', onThemeChange);
 
     applyDefaults();
     return { line: line, bar: bar, proportion: proportion, colorFor: colorFor, nf: nf };

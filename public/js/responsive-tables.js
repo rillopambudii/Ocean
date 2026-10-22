@@ -1,8 +1,8 @@
 /*
- * PKLP — Tabel admin → tampilan KARTU di layar HP.
+ * Oceanindo — Tabel admin → tampilan KARTU di layar HP.
  *
  * Membaca judul kolom dari <thead>, lalu memasang atribut data-label ke setiap
- * <td>. CSS (.pklp-cardize di adminlte-theme.css) yang mengubah tampilan jadi
+ * <td>. CSS (.ocean-cardize di adminlte-theme.css) yang mengubah tampilan jadi
  * kartu "Label : Nilai" saat layar kecil. Tidak perlu mengedit file Blade.
  *
  * Tabel kompleks (jumlah sel tidak sama dengan jumlah kolom header, mis. karena
@@ -12,7 +12,7 @@
     'use strict';
 
     function labelize(table) {
-        if (table.dataset.pklpCardize) return;
+        if (table.dataset.oceanCardize) return;
 
         var ths = table.querySelectorAll('thead > tr > th');
         if (!ths.length) return;
@@ -37,8 +37,8 @@
             });
         });
 
-        table.classList.add('pklp-cardize');
-        table.dataset.pklpCardize = '1';
+        table.classList.add('ocean-cardize');
+        table.dataset.oceanCardize = '1';
     }
 
     function run() {

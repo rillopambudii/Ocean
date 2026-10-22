@@ -1,5 +1,5 @@
 /* ============================================================
-   PKLP — AdminLTE/Bootstrap Theme Override (Fase 1)
+   Oceanindo — AdminLTE/Bootstrap Theme Override (Fase 1)
    Memetakan warna & gaya AdminLTE 3 (Bootstrap 4) ke design token
    (public/css/design-tokens.css → MASTER.md).
    Dimuat SETELAH adminlte.min.css via plugin "DesignSystem".
@@ -121,10 +121,10 @@ a:hover { color: var(--color-primary-700); }
 }
 .form-control::placeholder { color: var(--color-text-subtle); }
 
-/* ---------- Sidebar: tint ke indigo brand agar menyatu dgn aksen halaman ---------- */
+/* ---------- Sidebar: tint ke navy brand agar menyatu dgn aksen halaman ---------- */
 .main-sidebar,
 .sidebar-dark-primary {
-    background-color: var(--color-primary-900);   /* #1A1A4D — Marine Blue gelap */
+    background-color: var(--color-primary-900);   /* #0A2540 — navy laut dalam */
 }
 .brand-link {
     background-color: var(--color-primary-900);
@@ -136,7 +136,7 @@ a:hover { color: var(--color-primary-700); }
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link:hover {
     background-color: rgba(255,255,255,.06);
 }
-/* item aktif: Marine Blue (primary-600) menonjol di atas indigo gelap */
+/* item aktif: biru logo (primary-600) menonjol di atas navy */
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-treeview > .nav-item > .nav-link.active {
     background-color: var(--color-primary-600);
@@ -268,9 +268,9 @@ a:hover { color: var(--color-primary-700); }
     .content-header h1 { font-size: 1.35rem; }
 
     /* Sel tabel mode-scroll tidak membungkus → kolom rapi & tabel bisa di-scroll.
-       (Tabel mode-kartu .pklp-cardize dikecualikan, lihat di bawah.) */
-    .content .table:not(.pklp-cardize) th,
-    .content .table:not(.pklp-cardize) td { white-space: nowrap; }
+       (Tabel mode-kartu .ocean-cardize dikecualikan, lihat di bawah.) */
+    .content .table:not(.ocean-cardize) th,
+    .content .table:not(.ocean-cardize) td { white-space: nowrap; }
 
     /* Target sentuh nyaman (min 44px) untuk tombol & input */
     .btn,
@@ -293,16 +293,16 @@ a:hover { color: var(--color-primary-700); }
     img { max-width: 100%; height: auto; }
 
     /* ---------- Tabel → tampilan KARTU di HP ----------
-       Tabel bertanda .pklp-cardize (otomatis dari responsive-tables.js):
+       Tabel bertanda .ocean-cardize (otomatis dari responsive-tables.js):
        tiap baris jadi 1 kartu, tiap sel tampil sebagai "Label : Nilai".
        Jauh lebih enak dibaca daripada scroll horizontal. */
-    .content .table.pklp-cardize { overflow-x: visible; }
-    .content .table.pklp-cardize thead { display: none; }
-    .content .table.pklp-cardize tbody,
-    .content .table.pklp-cardize tr,
-    .content .table.pklp-cardize td { display: block; width: 100%; }
+    .content .table.ocean-cardize { overflow-x: visible; }
+    .content .table.ocean-cardize thead { display: none; }
+    .content .table.ocean-cardize tbody,
+    .content .table.ocean-cardize tr,
+    .content .table.ocean-cardize td { display: block; width: 100%; }
 
-    .content .table.pklp-cardize tr {
+    .content .table.ocean-cardize tr {
         margin-bottom: .85rem;
         padding: .15rem .9rem;
         border: 1px solid var(--color-border);
@@ -312,7 +312,7 @@ a:hover { color: var(--color-primary-700); }
         overflow: hidden;
     }
 
-    .content .table.pklp-cardize td {
+    .content .table.ocean-cardize td {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -324,9 +324,9 @@ a:hover { color: var(--color-primary-700); }
         border: 0;
         border-bottom: 1px solid var(--color-border);
     }
-    .content .table.pklp-cardize tr td:last-child { border-bottom: 0; }
+    .content .table.ocean-cardize tr td:last-child { border-bottom: 0; }
 
-    .content .table.pklp-cardize td::before {
+    .content .table.ocean-cardize td::before {
         content: attr(data-label);
         flex: 0 0 38%;
         text-align: left;
@@ -338,9 +338,9 @@ a:hover { color: var(--color-primary-700); }
     }
 
     /* Sel tanpa label (mis. kolom aksi yang tak terdeteksi) → konten rata kanan penuh */
-    .content .table.pklp-cardize td:not([data-label]) { justify-content: flex-end; }
-    .content .table.pklp-cardize td:not([data-label])::before { content: ""; flex: 0; }
+    .content .table.ocean-cardize td:not([data-label]) { justify-content: flex-end; }
+    .content .table.ocean-cardize td:not([data-label])::before { content: ""; flex: 0; }
 
     /* Di mode kartu, striping AdminLTE dimatikan (tiap kartu sudah punya surface sendiri) */
-    .content .table-striped.pklp-cardize tbody tr:nth-of-type(odd) { background: var(--color-surface); }
+    .content .table-striped.ocean-cardize tbody tr:nth-of-type(odd) { background: var(--color-surface); }
 }

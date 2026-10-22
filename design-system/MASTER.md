@@ -12,18 +12,19 @@
 
 ## 1. Brand
 
-Warna diambil langsung dari logo `public/logo.png` ("MARINE OFFSHORE").
+Primary diambil dari logo `public/logo-oceanindo-full.png` (tema **Deep Ocean**, biru + merah logo).
 
 | Token | Hex | Asal |
 |-------|-----|------|
-| **Marine Blue** (brand utama) | `#343399` | teks "MARINE" |
-| **Brand Red** (aksen brand) | `#E11D27` | swoosh + teks "OFFSHORE" (versi pure `#FE0000` dipakai hanya untuk logo) |
-| **Silver/Grey** | `#9CA3AF` | huruf logo |
+| **Ocean Blue** (brand utama) | `#0057A8` | teks "Oceanindo" + swoosh biru logo |
+| **Navy** (sidebar) | `#0A2540` | turunan gelap Ocean Blue (primary-900) |
+| **Logo Red** (aksen) | `#ED1C24` | swoosh merah + garis bawah logo |
 
 **Aturan pakai brand:**
-- **Marine Blue = primary** → tombol utama, link, nav aktif, header chart.
-- **Brand Red = aksen brand**, dipakai *hemat* (garis aksen, highlight kecil). **Jangan** jadikan warna tombol umum.
-- Karena ini aplikasi safety, **merah juga = makna bahaya** (error/overdue/destructive). Itu konsisten dengan brand, bukan benturan.
+- **Ocean Blue = primary** → tombol utama, link, nav aktif, header chart.
+- **Logo Red = aksen brand**, dipakai *hemat* (garis aksen, highlight kecil). **Jangan** jadikan warna tombol umum atau penanda status.
+- Merah juga = makna bahaya (`--color-danger`). Status bahaya **wajib** disertai ikon/teks agar tidak tertukar dengan aksen brand.
+- Teks putih di atas `#ED1C24` hanya ~4:1 → pakai untuk teks tebal/besar saja.
 
 ---
 
@@ -31,19 +32,19 @@ Warna diambil langsung dari logo `public/logo.png` ("MARINE OFFSHORE").
 
 > Gunakan **token semantik**, jangan hex mentah di komponen. Functional color (error/success) wajib disertai ikon/teks — jangan andalkan warna saja.
 
-### Skala Primary (Marine Blue / Indigo)
+### Skala Primary (Ocean Blue)
 | Step | Hex |
 |------|-----|
-| 50 | `#EEEEFA` |
-| 100 | `#DCDCF4` |
-| 200 | `#BBBAEA` |
-| 300 | `#9897DC` |
-| 400 | `#6A69C6` |
-| 500 | `#4B4AB0` |
-| **600 (brand)** | `#343399` |
-| 700 | `#2B2A80` |
-| 800 | `#232267` |
-| 900 | `#1A1A4D` |
+| 50 | `#EAF2FB` |
+| 100 | `#D0E2F5` |
+| 200 | `#A3C6EB` |
+| 300 | `#74A8DF` |
+| 400 | `#3F86CC` |
+| 500 | `#1A6DBB` |
+| **600 (brand)** | `#0057A8` |
+| 700 | `#00478A` |
+| 800 | `#04386C` |
+| 900 | `#0A2540` |
 
 ### Status (sama di light & dark, sesuaikan kontras)
 | Token | Light | Dark | Makna |
@@ -52,7 +53,7 @@ Warna diambil langsung dari logo `public/logo.png` ("MARINE OFFSHORE").
 | `warning` | `#F59E0B` | `#FBBF24` | open, akan kedaluwarsa |
 | `danger`  | `#DC2626` | `#F87171` | overdue, expired, error, destructive |
 | `info`    | `#0EA5E9` | `#38BDF8` | netral/informasi |
-| `accent`  | `#E11D27` | `#F0464E` | aksen brand (hemat) |
+| `accent`  | `#ED1C24` | `#F0464E` | aksen merah logo (hemat) |
 
 ### Surface & Text — **Light**
 | Token | Hex | Pakai |
@@ -68,15 +69,15 @@ Warna diambil langsung dari logo `public/logo.png` ("MARINE OFFSHORE").
 ### Surface & Text — **Dark**
 | Token | Hex | Pakai |
 |-------|-----|-------|
-| `bg` (page) | `#0F172A` | latar halaman |
-| `surface` (card) | `#1E293B` | kartu, panel, navbar |
-| `surface-2` | `#243044` | header tabel, hover |
-| `border` | `#334155` | garis, divider (harus tetap terlihat) |
-| `text` | `#F1F5F9` | teks utama (≥ 4.5:1) |
-| `text-muted` | `#CBD5E1` | teks sekunder (≥ 3:1) |
-| `text-subtle` | `#94A3B8` | placeholder, hint |
-| `primary` (dark) | `#9897DC` | link/teks brand di atas gelap (indigo-300) |
-| `primary-btn` (dark) | `#4B4AB0` | bg tombol primary di dark |
+| `bg` (page) | `#0B1524` | latar halaman |
+| `surface` (card) | `#13233A` | kartu, panel, navbar |
+| `surface-2` | `#1A2D47` | header tabel, hover |
+| `border` | `#2A3F5C` | garis, divider (harus tetap terlihat) |
+| `text` | `#EEF3F9` | teks utama (≥ 4.5:1) |
+| `text-muted` | `#C3D0E0` | teks sekunder (≥ 3:1) |
+| `text-subtle` | `#8EA2BC` | placeholder, hint |
+| `primary` (dark) | `#74A8DF` | link/teks brand di atas gelap (ocean-300) |
+| `primary-btn` (dark) | `#1A6DBB` | bg tombol primary di dark |
 
 **Aturan dark mode:** pakai varian tonal yang di-*desaturate*/diterangkan, **bukan** warna light yang dibalik. Uji kontras dark secara terpisah. Border & status harus tetap terbaca di kedua mode.
 
@@ -211,16 +212,16 @@ Warna diambil langsung dari logo `public/logo.png` ("MARINE OFFSHORE").
 :root{
   --color-bg:#F1F5F9; --color-surface:#FFFFFF; --color-surface-2:#F8FAFC;
   --color-border:#E2E8F0; --color-text:#0F172A; --color-text-muted:#475569; --color-text-subtle:#94A3B8;
-  --color-primary:#343399; --color-primary-600:#343399; --color-primary-700:#2B2A80;
-  --color-on-primary:#FFFFFF; --color-accent:#E11D27;
+  --color-primary:#0057A8; --color-primary-600:#0057A8; --color-primary-700:#00478A; --color-primary-900:#0A2540;
+  --color-on-primary:#FFFFFF; --color-accent:#ED1C24; --color-on-accent:#FFFFFF;
   --color-success:#16A34A; --color-warning:#F59E0B; --color-danger:#DC2626; --color-info:#0EA5E9;
   --radius-sm:6px; --radius-md:10px; --radius-lg:16px;
   --shadow-e1:0 1px 2px rgba(15,23,42,.06); --shadow-e2:0 4px 12px rgba(15,23,42,.08); --shadow-e3:0 12px 28px rgba(15,23,42,.12);
 }
 :root.dark, [data-theme="dark"]{
-  --color-bg:#0F172A; --color-surface:#1E293B; --color-surface-2:#243044;
-  --color-border:#334155; --color-text:#F1F5F9; --color-text-muted:#CBD5E1; --color-text-subtle:#94A3B8;
-  --color-primary:#9897DC; --color-primary-600:#4B4AB0; --color-primary-700:#343399;
+  --color-bg:#0B1524; --color-surface:#13233A; --color-surface-2:#1A2D47;
+  --color-border:#2A3F5C; --color-text:#EEF3F9; --color-text-muted:#C3D0E0; --color-text-subtle:#8EA2BC;
+  --color-primary:#74A8DF; --color-primary-600:#1A6DBB; --color-primary-700:#0057A8; --color-primary-900:#071A2E;
   --color-on-primary:#FFFFFF; --color-accent:#F0464E;
   --color-success:#22C55E; --color-warning:#FBBF24; --color-danger:#F87171; --color-info:#38BDF8;
   --shadow-e1:0 1px 2px rgba(0,0,0,.4); --shadow-e2:0 4px 12px rgba(0,0,0,.45); --shadow-e3:0 12px 28px rgba(0,0,0,.5);
@@ -234,7 +235,7 @@ theme:{ extend:{
   colors:{
     bg:'var(--color-bg)', surface:'var(--color-surface)', 'surface-2':'var(--color-surface-2)',
     border:'var(--color-border)',
-    primary:{ DEFAULT:'var(--color-primary)', 600:'#343399', 700:'#2B2A80' },
+    primary:{ DEFAULT:'var(--color-primary)', 600:'#0057A8', 700:'#00478A' },
     accent:'var(--color-accent)',
     success:'var(--color-success)', warning:'var(--color-warning)',
     danger:'var(--color-danger)', info:'var(--color-info)',

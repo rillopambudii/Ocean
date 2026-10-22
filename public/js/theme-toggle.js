@@ -1,15 +1,15 @@
 /* ============================================================
-   PKLP — Theme Toggle (Fase 3)
-   Dark/Light, disimpan di localStorage (key: 'pklp-theme').
+   Oceanindo — Theme Toggle (Fase 3)
+   Dark/Light, disimpan di localStorage (key: 'ocean-theme').
    Mengeset [data-theme="dark"] di <html>. Token CSS yang menangani warna.
    - Otomatis menyuntik tombol toggle ke navbar AdminLTE (.navbar-nav.ml-auto).
    - Halaman lain bisa sediakan elemen [data-theme-toggle] sendiri.
-   - window.PKLPTheme.toggle()/apply()/current() tersedia global.
+   - window.OceanTheme.toggle()/apply()/current() tersedia global.
    ============================================================ */
 (function () {
     'use strict';
 
-    var KEY = 'pklp-theme';
+    var KEY = 'ocean-theme';
     var root = document.documentElement;
 
     var MOON = '<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 109.8 9.8z"/>';
@@ -42,7 +42,7 @@
         else { root.removeAttribute('data-theme'); }
         paintButtons(theme);
         // beri tahu komponen lain (mis. charts) agar menyesuaikan warna
-        try { window.dispatchEvent(new CustomEvent('pklp:themechange', { detail: { theme: theme } })); }
+        try { window.dispatchEvent(new CustomEvent('ocean:themechange', { detail: { theme: theme } })); }
         catch (e) {}
     }
 
@@ -52,7 +52,7 @@
         apply(next);
     }
 
-    window.PKLPTheme = { toggle: toggle, apply: apply, current: current };
+    window.OceanTheme = { toggle: toggle, apply: apply, current: current };
 
     function svgIcon() {
         return '<svg data-theme-icon width="18" height="18" viewBox="0 0 24 24" fill="none" ' +

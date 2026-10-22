@@ -1,5 +1,5 @@
 /* ============================================================
-   PKLP Design System — Design Tokens
+   Oceanindo Design System — Design Tokens
    Bentuk EKSEKUSI dari design-system/MASTER.md (§2, §3, §4, §10).
    Ini SATU SUMBER token. Ubah di sini (selaras MASTER.md) →
    styleguide & komponen yang memakai class .ds-* ikut berubah.
@@ -20,19 +20,20 @@
   --color-text-subtle:#94A3B8;
 
   /* brand / primary scale */
-  --color-primary-50:#EEEEFA;
-  --color-primary-100:#DCDCF4;
-  --color-primary-200:#BBBAEA;
-  --color-primary-300:#9897DC;
-  --color-primary-400:#6A69C6;
-  --color-primary-500:#4B4AB0;
-  --color-primary-600:#343399;
-  --color-primary-700:#2B2A80;
-  --color-primary-800:#232267;
-  --color-primary-900:#1A1A4D;
+  --color-primary-50:#EAF2FB;
+  --color-primary-100:#D0E2F5;
+  --color-primary-200:#A3C6EB;
+  --color-primary-300:#74A8DF;
+  --color-primary-400:#3F86CC;
+  --color-primary-500:#1A6DBB;
+  --color-primary-600:#0057A8;
+  --color-primary-700:#00478A;
+  --color-primary-800:#04386C;
+  --color-primary-900:#0A2540;
   --color-primary:var(--color-primary-600);
   --color-on-primary:#FFFFFF;
-  --color-accent:#E11D27;
+  --color-accent:#ED1C24;           /* merah logo; hemat, jangan untuk status */
+  --color-on-accent:#FFFFFF;
 
   /* status */
   --color-success:#16A34A;
@@ -62,17 +63,21 @@
 
 /* ---------- DARK ---------- */
 :root.dark, [data-theme="dark"] {
-  --color-bg:#0F172A;
-  --color-surface:#1E293B;
-  --color-surface-2:#243044;
-  --color-border:#334155;
-  --color-text:#F1F5F9;
-  --color-text-muted:#CBD5E1;
-  --color-text-subtle:#94A3B8;
+  --color-bg:#0B1524;
+  --color-surface:#13233A;
+  --color-surface-2:#1A2D47;
+  --color-border:#2A3F5C;
+  --color-text:#EEF3F9;
+  --color-text-muted:#C3D0E0;
+  --color-text-subtle:#8EA2BC;
 
-  --color-primary:#9897DC;        /* indigo-300 untuk teks/link di atas gelap */
-  --color-primary-600:#4B4AB0;    /* bg tombol primary di dark */
-  --color-primary-700:#343399;
+  --color-primary:#74A8DF;        /* ocean-300 untuk teks/link di atas gelap */
+  --color-primary-600:#1A6DBB;    /* bg tombol primary di dark */
+  --color-primary-700:#0057A8;
+  --color-primary-300:#3F86CC;    /* focus ring */
+  --color-primary-100:#1A3A5E;    /* tint bg/border di atas gelap */
+  --color-primary-50:#132C4A;
+  --color-primary-900:#071A2E;    /* sidebar */
   --color-on-primary:#FFFFFF;
   --color-accent:#F0464E;
 

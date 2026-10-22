@@ -12,9 +12,9 @@
   - Reimplementasi framer-motion (`useScroll/useTransform/useSpring`) → 1 scroll listener + `requestAnimationFrame` dengan smoothing (lerp 0.1) sebagai pengganti spring.
   - **WAJIB hormati `prefers-reduced-motion`** (MASTER §6): jika aktif, parallax dimatikan → grid statis identitas, tidak ada gerak.
   - Animasi hanya `transform`/`opacity` (MASTER §6, cegah CLS).
-- **Gambar kartu:** `picsum.photos` (deterministik via seed, dijamin termuat) + overlay gradient Marine Blue + label modul → tetap on-brand, nol risiko broken image. (Bukan Unsplash karena ID foto tak bisa dijamin.)
+- **Gambar kartu:** `picsum.photos` (deterministik via seed, dijamin termuat) + overlay gradient Ocean Blue + label modul → tetap on-brand, nol risiko broken image. (Bukan Unsplash karena ID foto tak bisa dijamin.)
 - **Ikon:** Lucide (vektor) — bukan emoji (MASTER §9).
-- **Warna/typography/spacing/radius/shadow/CTA:** tetap pakai token & aturan MASTER (Marine Blue primary, Inter + JetBrains Mono, satu primary CTA per section).
+- **Warna/typography/spacing/radius/shadow/CTA:** tetap pakai token & aturan MASTER (Ocean Blue primary, Inter + JetBrains Mono, satu primary CTA per section).
 - **Light + Dark:** anti-flash inline script + tombol `[data-theme-toggle]` seperti halaman publik lain.
 
 ## Struktur section
