@@ -403,6 +403,16 @@ return [
                     ],
                 ],
                 [
+                    'text' => 'OSCARD & Observations',
+                    'url'  => 'admin/safety-observations',
+                    'icon' => 'fas fa-eye',
+                ],
+                [
+                    'text' => 'Training & Drills',
+                    'url'  => 'admin/training-activities',
+                    'icon' => 'fas fa-chalkboard-teacher',
+                ],
+                [
                     'text'    => 'Dokumen QHSE',
                     'icon'    => 'fas fa-folder-open',
                     'submenu' => [

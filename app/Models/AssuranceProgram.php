@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPlannedSchedule;
 use Illuminate\Database\Eloquent\Model;
 
 class AssuranceProgram extends Model
 {
+    use HasPlannedSchedule;
+
     /**
      * Jenis assurance — dari sheet "Data Source" di Sub Menu Qhse.xlsx.
      */
@@ -19,20 +22,6 @@ class AssuranceProgram extends Model
         'ISPS Code ISSC',
         'Management Review',
         'Master Review',
-    ];
-
-    /**
-     * Status => badge AdminLTE.
-     */
-    public const STATUS_BADGES = [
-
-        'Done' => 'success',
-
-        'Overdue' => 'danger',
-
-        'Due Soon' => 'warning',
-
-        'Open' => 'secondary',
     ];
 
     protected $fillable = [
@@ -62,27 +51,6 @@ class AssuranceProgram extends Model
 
         'actual_date' => 'date',
     ];
-
-    /**
-     * Hari menuju tanggal rencana (negatif = lewat), seperti kolom "Due" di Excel.
-     */
-    public function daysToDue(): int
-    {
-        return (int) today()->diffInDays($this->planned_date, false);
-    }
-
-    public function status(): string
-    {
-        if ($this->actual_date) {
-            return 'Done';
-        }
-
-        if ($this->daysToDue() < 0) {
-            return 'Overdue';
-        }
-
-        return $this->daysToDue() <= Crew::WARNING_DAYS ? 'Due Soon' : 'Open';
-    }
 
     public function location()
     {

@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use App\Http\Controllers\Concerns\HandlesEvidence;
 use App\Models\AssuranceProgram;
 use App\Models\MasterLocation;
 
 class AssuranceProgramController extends Controller
 {
+    use HandlesEvidence;
+
     public function index(Request $request)
     {
         $locationId = $request->query('location');
@@ -89,9 +91,7 @@ class AssuranceProgramController extends Controller
 
     public function destroy(AssuranceProgram $assuranceProgram)
     {
-        if ($assuranceProgram->evidence_path) {
-            Storage::delete($assuranceProgram->evidence_path);
-        }
+        $this->deleteEvidence($assuranceProgram);
 
         $assuranceProgram->delete();
 
@@ -101,15 +101,7 @@ class AssuranceProgramController extends Controller
 
     public function evidence(AssuranceProgram $assuranceProgram)
     {
-        abort_unless(
-            $assuranceProgram->evidence_path && Storage::exists($assuranceProgram->evidence_path),
-            404
-        );
-
-        return Storage::response(
-            $assuranceProgram->evidence_path,
-            $assuranceProgram->evidence_name
-        );
+        return $this->evidenceResponse($assuranceProgram);
     }
 
     private function validateProgram(Request $request, ?AssuranceProgram $program = null): array
@@ -130,7 +122,7 @@ class AssuranceProgramController extends Controller
 
             'nc_closed' => 'nullable|integer|min:0',
 
-            'evidence' => 'nullable|file|' . DocumentController::FILE_RULES,
+            'evidence' => $this->evidenceRule(),
         ]);
 
         $validated['nc_open'] ??= 0;
@@ -139,19 +131,6 @@ class AssuranceProgramController extends Controller
 
         unset($validated['evidence']);
 
-        if ($request->hasFile('evidence')) {
-
-            if ($program?->evidence_path) {
-                Storage::delete($program->evidence_path);
-            }
-
-            $file = $request->file('evidence');
-
-            $validated['evidence_path'] = $file->store('assurance');
-
-            $validated['evidence_name'] = $file->getClientOriginalName();
-        }
-
-        return $validated;
+        return $validated + $this->storeEvidence($request, $program, 'assurance');
     }
 }

@@ -129,29 +129,7 @@
 
     </div>
 
-    <div class="form-group mb-3">
-
-        <label>Evidence <small class="text-muted">(opsional)</small></label>
-
-        @if($program?->evidence_path)
-            <p class="mb-1">
-                File saat ini:
-                <a href="/admin/assurance-programs/{{ $program->id }}/evidence" target="_blank">
-                    {{ $program->evidence_name }}
-                </a>
-                <br>
-                <small class="text-muted">Kosongkan jika tidak ingin mengganti file.</small>
-            </p>
-        @endif
-
-        <input type="file"
-               name="evidence"
-               class="form-control"
-               accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png">
-
-        <small class="text-muted">PDF, Word, Excel, PowerPoint, JPG/PNG — maks. 20 MB.</small>
-
-    </div>
+    @include('partials.evidence-input', ['model' => $program, 'url' => "/admin/assurance-programs/{$program?->id}/evidence"])
 
     <button class="btn btn-primary">Simpan</button>
 
