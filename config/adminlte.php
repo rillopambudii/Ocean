@@ -321,6 +321,11 @@ return [
                     'icon' => 'fas fa-home',
                 ],
                 [
+                    'text' => 'Weekly Action Tracker',
+                    'url'  => 'admin/follow-up',
+                    'icon' => 'fas fa-tasks',
+                ],
+                [
                     'text' => 'Master Data',
                     'url'  => 'admin/master-location',
                     'icon' => 'fas fa-ship',
@@ -447,9 +452,19 @@ return [
             'can'     => 'operation-access',
             'submenu' => [
                 [
+                    'text' => 'Hire & Contract Status',
+                    'url'  => 'admin/vessel-contracts',
+                    'icon' => 'fas fa-file-contract',
+                ],
+                [
                     'text' => 'Certificate Register',
                     'url'  => 'admin/vessel-certificates',
                     'icon' => 'fas fa-certificate',
+                ],
+                [
+                    'text' => 'Operational Follow-up',
+                    'url'  => 'admin/follow-up/operation',
+                    'icon' => 'fas fa-clipboard-check',
                 ],
             ],
         ],
@@ -461,6 +476,11 @@ return [
             'icon'    => 'fas fa-cogs',
             'can'     => 'operation-access',
             'submenu' => [
+                [
+                    'text' => 'Repair Follow-up',
+                    'url'  => 'admin/follow-up/technical',
+                    'icon' => 'fas fa-wrench',
+                ],
                 [
                     'text' => 'Docking Plan',
                     'url'  => 'admin/vessel-surveys',
@@ -532,6 +552,11 @@ return [
             'icon'    => 'fas fa-shopping-cart',
             'can'     => 'super-admin',
             'submenu' => [
+                [
+                    'text' => 'Procurement Follow-up',
+                    'url'  => 'admin/follow-up/purchasing',
+                    'icon' => 'fas fa-truck',
+                ],
                 [
                     'text' => 'Vessel Requisitions',
                     'url'  => 'admin/purchase-requests',

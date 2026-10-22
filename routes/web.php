@@ -26,6 +26,8 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\AssuranceProgramController;
 use App\Http\Controllers\SafetyObservationController;
 use App\Http\Controllers\TrainingActivityController;
+use App\Http\Controllers\ActionItemController;
+use App\Http\Controllers\VesselContractController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -51,6 +53,15 @@ Route::middleware(['auth'])->group(function () {
     | DOKUMEN (QHSE & DEPARTEMEN) — hak akses dicek per kategori di controller
     |--------------------------------------------------------------------------
     */
+    /*
+    |--------------------------------------------------------------------------
+    | WEEKLY ACTION TRACKER — satu tracker lintas departemen untuk semua admin
+    |--------------------------------------------------------------------------
+    */
+    Route::get('admin/follow-up/{department?}', [ActionItemController::class, 'index'])->where('department', '[a-z]+');
+    Route::resource('admin/action-items', ActionItemController::class)->except(['index', 'show']);
+    Route::get('admin/action-items/{actionItem}/evidence', [ActionItemController::class, 'evidence']);
+
     Route::prefix('admin/documents/{category}')->group(function () {
         Route::get('/', [DocumentController::class, 'index']);
         Route::get('/create', [DocumentController::class, 'create']);
@@ -146,6 +157,7 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::middleware(['role:Admin Operation'])->group(function () {
+        Route::resource('admin/vessel-contracts', VesselContractController::class)->except('show');
         Route::resource('admin/vessel-certificates', VesselCertificateController::class);
         Route::resource('admin/maintenance-checklists', MaintenanceChecklistController::class);
 
