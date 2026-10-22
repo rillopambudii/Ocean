@@ -395,6 +395,34 @@ return [
             'can'  => 'qhse-access',
         ],
 
+        [
+            'text'    => 'Dokumen QHSE',
+            'icon'    => 'fas fa-folder-open',
+            'can'     => 'qhse-access',
+            'submenu' => [
+                [
+                    'text' => 'Manual',
+                    'url'  => 'admin/documents/manual',
+                    'icon' => 'fas fa-book',
+                ],
+                [
+                    'text' => 'Procedure',
+                    'url'  => 'admin/documents/procedure',
+                    'icon' => 'fas fa-file-alt',
+                ],
+                [
+                    'text' => 'Work Instruction',
+                    'url'  => 'admin/documents/work-instruction',
+                    'icon' => 'fas fa-file-signature',
+                ],
+                [
+                    'text' => 'Form/Checklist',
+                    'url'  => 'admin/documents/form-checklist',
+                    'icon' => 'fas fa-tasks',
+                ],
+            ],
+        ],
+
         /*
         |--------------------------------------------------------------------------
         | AUDIT
@@ -450,6 +478,45 @@ return [
             'url'  => 'admin/maintenance-checklists',
             'icon' => 'fas fa-tools',
             'can'  => 'operation-access',
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | DEPARTEMEN (penyimpanan dokumen)
+        |--------------------------------------------------------------------------
+        */
+
+        [
+            'header' => 'DEPARTEMEN',
+            'can' => 'super-admin',
+        ],
+
+        [
+            'text' => 'Technical',
+            'url'  => 'admin/documents/technical',
+            'icon' => 'fas fa-cogs',
+            'can'  => 'super-admin',
+        ],
+
+        [
+            'text' => 'Crewing',
+            'url'  => 'admin/documents/crewing',
+            'icon' => 'fas fa-user-friends',
+            'can'  => 'super-admin',
+        ],
+
+        [
+            'text' => 'Purchasing',
+            'url'  => 'admin/documents/purchasing',
+            'icon' => 'fas fa-shopping-cart',
+            'can'  => 'super-admin',
+        ],
+
+        [
+            'text' => 'Budget Plan & Monitoring',
+            'url'  => 'admin/documents/budget',
+            'icon' => 'fas fa-wallet',
+            'can'  => 'super-admin',
         ],
 
         /*
