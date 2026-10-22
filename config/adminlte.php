@@ -499,10 +499,21 @@ return [
         ],
 
         [
-            'text' => 'Crewing',
-            'url'  => 'admin/documents/crewing',
-            'icon' => 'fas fa-user-friends',
-            'can'  => 'super-admin',
+            'text'    => 'Crewing',
+            'icon'    => 'fas fa-user-friends',
+            'can'     => 'super-admin',
+            'submenu' => [
+                [
+                    'text' => 'Data Kru',
+                    'url'  => 'admin/crews',
+                    'icon' => 'fas fa-id-card',
+                ],
+                [
+                    'text' => 'Dokumen',
+                    'url'  => 'admin/documents/crewing',
+                    'icon' => 'fas fa-folder-open',
+                ],
+            ],
         ],
 
         [

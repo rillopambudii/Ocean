@@ -18,6 +18,7 @@ use App\Http\Controllers\VesselCertificateController;
 use App\Http\Controllers\MaintenanceChecklistController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\CrewController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -62,6 +63,11 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:Super Admin'])->group(function () {
         Route::resource('admin/users', UserManagementController::class);
         Route::resource('admin/master-location', MasterLocationController::class);
+
+        // Departemen Crewing
+        Route::resource('admin/crews', CrewController::class);
+        Route::post('admin/crews/{crew}/certificates', [CrewController::class, 'storeCertificate']);
+        Route::delete('admin/crew-certificates/{certificate}', [CrewController::class, 'destroyCertificate']);
     });
 
     /*
