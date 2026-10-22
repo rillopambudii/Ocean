@@ -28,6 +28,7 @@ use App\Http\Controllers\SafetyObservationController;
 use App\Http\Controllers\TrainingActivityController;
 use App\Http\Controllers\ActionItemController;
 use App\Http\Controllers\VesselContractController;
+use App\Http\Controllers\VendorController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -91,6 +92,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/purchase-requests/{purchaseRequest}/attachment', [PurchaseRequestController::class, 'attachment']);
         Route::post('admin/purchase-requests/{purchaseRequest}/items', [PurchaseRequestController::class, 'storeItem']);
         Route::delete('admin/purchase-request-items/{item}', [PurchaseRequestController::class, 'destroyItem']);
+        Route::resource('admin/vendors', VendorController::class);
+        Route::post('admin/vendors/{vendor}/evaluations', [VendorController::class, 'storeEvaluation']);
+        Route::delete('admin/vendor-evaluations/{evaluation}', [VendorController::class, 'destroyEvaluation']);
+        Route::get('admin/vendor-evaluations/{evaluation}/evidence', [VendorController::class, 'evaluationEvidence']);
 
         // Departemen Budget Plan & Monitoring
         Route::get('admin/budgets', [BudgetController::class, 'index']);

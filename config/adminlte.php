@@ -563,6 +563,11 @@ return [
                     'icon' => 'fas fa-file-invoice',
                 ],
                 [
+                    'text' => 'Vendor Evaluation',
+                    'url'  => 'admin/vendors',
+                    'icon' => 'fas fa-star-half-alt',
+                ],
+                [
                     'text' => 'Dokumen Purchasing',
                     'url'  => 'admin/documents/purchasing',
                     'icon' => 'fas fa-folder-open',
