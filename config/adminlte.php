@@ -492,10 +492,26 @@ return [
         ],
 
         [
-            'text' => 'Technical',
-            'url'  => 'admin/documents/technical',
-            'icon' => 'fas fa-cogs',
-            'can'  => 'super-admin',
+            'text'    => 'Technical',
+            'icon'    => 'fas fa-cogs',
+            'can'     => 'super-admin',
+            'submenu' => [
+                [
+                    'text' => 'Docking & Survey',
+                    'url'  => 'admin/vessel-surveys',
+                    'icon' => 'fas fa-anchor',
+                ],
+                [
+                    'text' => 'Laporan Kerusakan',
+                    'url'  => 'admin/damage-reports',
+                    'icon' => 'fas fa-tools',
+                ],
+                [
+                    'text' => 'Dokumen',
+                    'url'  => 'admin/documents/technical',
+                    'icon' => 'fas fa-folder-open',
+                ],
+            ],
         ],
 
         [

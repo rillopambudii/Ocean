@@ -19,6 +19,8 @@ use App\Http\Controllers\MaintenanceChecklistController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\CrewController;
+use App\Http\Controllers\VesselSurveyController;
+use App\Http\Controllers\DamageReportController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -63,6 +65,10 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:Super Admin'])->group(function () {
         Route::resource('admin/users', UserManagementController::class);
         Route::resource('admin/master-location', MasterLocationController::class);
+
+        // Departemen Technical
+        Route::resource('admin/vessel-surveys', VesselSurveyController::class)->except('show');
+        Route::resource('admin/damage-reports', DamageReportController::class)->except('show');
 
         // Departemen Crewing
         Route::resource('admin/crews', CrewController::class);
