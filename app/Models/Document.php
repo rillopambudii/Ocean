@@ -19,13 +19,13 @@ class Document extends Model
 
         'form-checklist' => ['label' => 'Form/Checklist', 'gate' => 'qhse-access'],
 
-        'technical' => ['label' => 'Technical', 'gate' => 'super-admin'],
+        'technical' => ['label' => 'Technical', 'gate' => 'technical-access'],
 
-        'crewing' => ['label' => 'Crewing', 'gate' => 'super-admin'],
+        'crewing' => ['label' => 'Crewing', 'gate' => 'crewing-access'],
 
-        'purchasing' => ['label' => 'Purchasing', 'gate' => 'super-admin'],
+        'purchasing' => ['label' => 'Purchasing', 'gate' => 'purchasing-access'],
 
-        'budget' => ['label' => 'Budget Plan & Monitoring', 'gate' => 'super-admin'],
+        'budget' => ['label' => 'Budget Plan & Monitoring', 'gate' => 'technical-access'],
     ];
 
     protected $fillable = [

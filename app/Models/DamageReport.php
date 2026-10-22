@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class DamageReport extends Model
 {
+    use ScopedToVessel;
+
     /**
      * Prioritas => badge AdminLTE.
      */

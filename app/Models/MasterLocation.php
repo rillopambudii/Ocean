@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class MasterLocation extends Model
@@ -12,6 +13,20 @@ class MasterLocation extends Model
         'name',
         'type',
     ];
+
+    /**
+     * Admin Kapal hanya melihat kapalnya sendiri, termasuk di dropdown form.
+     */
+    protected static function booted(): void
+    {
+        static::addGlobalScope('vessel', function (Builder $query) {
+            $vesselId = auth()->user()?->vesselScope();
+
+            if ($vesselId !== null) {
+                $query->whereKey($vesselId);
+            }
+        });
+    }
 
     public function manHours()
     {

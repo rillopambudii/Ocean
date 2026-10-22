@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Crew extends Model
 {
+    use ScopedToVessel;
+
     /**
      * Batas hari sebelum tanggal habis dianggap "Segera Habis".
      */

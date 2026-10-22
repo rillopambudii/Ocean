@@ -19,9 +19,11 @@
                 <div class="icon">
                     <i class="{{ $icon }}"></i>
                 </div>
-                <a href="{{ $url }}" class="small-box-footer">
-                    Lihat detail <i class="fas fa-arrow-circle-right"></i>
-                </a>
+                @if($url)
+                    <a href="{{ $url }}" class="small-box-footer">
+                        Lihat detail <i class="fas fa-arrow-circle-right"></i>
+                    </a>
+                @endif
             </div>
         </div>
     @endforeach
@@ -30,7 +32,9 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">{{ $list['title'] }}</h3>
-        <a href="{{ $list['url'] }}" class="float-right small">Buka register</a>
+        @if($list['url'])
+            <a href="{{ $list['url'] }}" class="float-right small">Buka register</a>
+        @endif
     </div>
 
     <div class="card-body p-0">

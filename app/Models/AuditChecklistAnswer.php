@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class AuditChecklistAnswer extends Model
 {
+    use ScopedToVessel;
+
+    public const VESSEL_PARENT = 'audit';
+
     protected $fillable = [
         'internal_audit_id',
         'audit_checklist_template_id',

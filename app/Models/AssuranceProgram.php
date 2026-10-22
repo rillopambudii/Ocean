@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use App\Models\Concerns\HasPlannedSchedule;
 use Illuminate\Database\Eloquent\Model;
 
 class AssuranceProgram extends Model
 {
-    use HasPlannedSchedule;
+    use HasPlannedSchedule, ScopedToVessel;
 
     /**
      * Jenis assurance — dari sheet "Data Source" di Sub Menu Qhse.xlsx.

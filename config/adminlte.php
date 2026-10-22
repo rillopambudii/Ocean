@@ -324,6 +324,7 @@ return [
                     'text' => 'Weekly Action Tracker',
                     'url'  => 'admin/follow-up',
                     'icon' => 'fas fa-tasks',
+                    'can'  => 'workspace',
                 ],
                 [
                     'text' => 'Master Data',
@@ -343,7 +344,7 @@ return [
         [
             'text'    => 'QHSE',
             'icon'    => 'fas fa-shield-alt',
-            'can'     => 'qhse-access',
+            'can'     => ['qhse-access', 'vessel-admin', 'management'],
             'submenu' => [
                 [
                     'text' => 'QHSE Dashboard',
@@ -354,10 +355,12 @@ return [
                     'text' => 'Assurance Program',
                     'url'  => 'admin/assurance-programs',
                     'icon' => 'fas fa-clipboard-list',
+                    'can'  => ['qhse-access', 'vessel-admin'],
                 ],
                 [
                     'text'    => 'QHSE Statistics',
                     'icon'    => 'fas fa-chart-line',
+                    'can'     => ['qhse-access', 'vessel-admin'],
                     'submenu' => [
                         [
                             'text' => 'Man Hours',
@@ -380,20 +383,24 @@ return [
                     'text' => 'Annual Work Plan',
                     'url'  => 'admin/annual-work-plans',
                     'icon' => 'fas fa-calendar',
+                    'can'  => 'qhse-access',
                 ],
                 [
                     'text' => 'Management Review',
                     'url'  => 'admin/management-reviews',
                     'icon' => 'fas fa-users-cog',
+                    'can'  => 'qhse-access',
                 ],
                 [
                     'text' => 'Management Visit',
                     'url'  => 'admin/management-visits',
                     'icon' => 'fas fa-clipboard-check',
+                    'can'  => 'qhse-access',
                 ],
                 [
                     'text'    => 'Audit & NC Register',
                     'icon'    => 'fas fa-search',
+                    'can'     => 'qhse-access',
                     'submenu' => [
                         [
                             'text' => 'Checklist Template',
@@ -416,15 +423,18 @@ return [
                     'text' => 'OSCARD & Observations',
                     'url'  => 'admin/safety-observations',
                     'icon' => 'fas fa-eye',
+                    'can'  => ['qhse-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Training & Drills',
                     'url'  => 'admin/training-activities',
                     'icon' => 'fas fa-chalkboard-teacher',
+                    'can'  => ['qhse-access', 'vessel-admin'],
                 ],
                 [
                     'text'    => 'Dokumen QHSE',
                     'icon'    => 'fas fa-folder-open',
+                    'can'     => 'qhse-access',
                     'submenu' => [
                         [
                             'text' => 'Manual',
@@ -454,7 +464,7 @@ return [
         [
             'text'    => 'Operation',
             'icon'    => 'fas fa-ship',
-            'can'     => 'operation-access',
+            'can'     => ['operation-access', 'vessel-admin', 'management'],
             'submenu' => [
                 [
                     'text' => 'Operation Dashboard',
@@ -465,64 +475,70 @@ return [
                     'text' => 'Hire & Contract Status',
                     'url'  => 'admin/vessel-contracts',
                     'icon' => 'fas fa-file-contract',
+                    'can'  => ['operation-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Certificate Register',
                     'url'  => 'admin/vessel-certificates',
                     'icon' => 'fas fa-certificate',
+                    'can'  => ['operation-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Renewal & Survey Queue',
                     'url'  => 'admin/renewal-queue',
                     'icon' => 'fas fa-hourglass-half',
+                    'can'  => ['operation-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Operational Follow-up',
                     'url'  => 'admin/follow-up/operation',
                     'icon' => 'fas fa-clipboard-check',
+                    'can'  => 'workspace',
                 ],
             ],
         ],
 
         // Admin Operation tetap melihat Technical untuk PMS & Work Orders;
-        // item lain khusus Super Admin.
+        // Repair Follow-up juga; item lain untuk Admin Technical / Admin Kapal.
         [
             'text'    => 'Technical',
             'icon'    => 'fas fa-cogs',
-            'can'     => 'operation-access',
+            'can'     => ['technical-access', 'operation-access', 'vessel-admin', 'management'],
             'submenu' => [
                 [
                     'text' => 'Technical Dashboard',
                     'url'  => 'admin/dashboards/technical',
                     'icon' => 'fas fa-tachometer-alt',
-                    'can'  => 'super-admin',
+                    'can'  => ['technical-access', 'vessel-admin', 'management'],
                 ],
                 [
                     'text' => 'Repair Follow-up',
                     'url'  => 'admin/follow-up/technical',
                     'icon' => 'fas fa-wrench',
+                    'can'  => 'workspace',
                 ],
                 [
                     'text' => 'Docking Plan',
                     'url'  => 'admin/vessel-surveys',
                     'icon' => 'fas fa-anchor',
-                    'can'  => 'super-admin',
+                    'can'  => ['technical-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Defect Register',
                     'url'  => 'admin/damage-reports',
                     'icon' => 'fas fa-exclamation-triangle',
-                    'can'  => 'super-admin',
+                    'can'  => ['technical-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'PMS & Work Orders',
                     'url'  => 'admin/maintenance-checklists',
                     'icon' => 'fas fa-tools',
+                    'can'  => ['technical-access', 'operation-access', 'vessel-admin'],
                 ],
                 [
                     'text'    => 'Budget Planning & Monitoring',
                     'icon'    => 'fas fa-wallet',
-                    'can'     => 'super-admin',
+                    'can'     => 'technical-access',
                     'submenu' => [
                         [
                             'text' => 'Monitoring',
@@ -545,7 +561,7 @@ return [
                     'text' => 'Dokumen Technical',
                     'url'  => 'admin/documents/technical',
                     'icon' => 'fas fa-folder-open',
-                    'can'  => 'super-admin',
+                    'can'  => 'technical-access',
                 ],
             ],
         ],
@@ -553,7 +569,7 @@ return [
         [
             'text'    => 'Crewing',
             'icon'    => 'fas fa-user-friends',
-            'can'     => 'super-admin',
+            'can'     => ['crewing-access', 'vessel-admin', 'management'],
             'submenu' => [
                 [
                     'text' => 'Crewing Dashboard',
@@ -564,16 +580,19 @@ return [
                     'text' => 'Crew Register',
                     'url'  => 'admin/crews',
                     'icon' => 'fas fa-id-card',
+                    'can'  => ['crewing-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Crew Rotation Plan',
                     'url'  => 'admin/crew-rotation',
                     'icon' => 'fas fa-sync-alt',
+                    'can'  => ['crewing-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Dokumen Crewing',
                     'url'  => 'admin/documents/crewing',
                     'icon' => 'fas fa-folder-open',
+                    'can'  => 'crewing-access',
                 ],
             ],
         ],
@@ -581,7 +600,7 @@ return [
         [
             'text'    => 'Purchasing',
             'icon'    => 'fas fa-shopping-cart',
-            'can'     => 'super-admin',
+            'can'     => ['purchasing-access', 'vessel-admin', 'management'],
             'submenu' => [
                 [
                     'text' => 'Purchasing Dashboard',
@@ -592,21 +611,25 @@ return [
                     'text' => 'Procurement Follow-up',
                     'url'  => 'admin/follow-up/purchasing',
                     'icon' => 'fas fa-truck',
+                    'can'  => 'workspace',
                 ],
                 [
                     'text' => 'Vessel Requisitions',
                     'url'  => 'admin/purchase-requests',
                     'icon' => 'fas fa-file-invoice',
+                    'can'  => ['purchasing-access', 'vessel-admin'],
                 ],
                 [
                     'text' => 'Vendor Evaluation',
                     'url'  => 'admin/vendors',
                     'icon' => 'fas fa-star-half-alt',
+                    'can'  => 'purchasing-access',
                 ],
                 [
                     'text' => 'Dokumen Purchasing',
                     'url'  => 'admin/documents/purchasing',
                     'icon' => 'fas fa-folder-open',
+                    'can'  => 'purchasing-access',
                 ],
             ],
         ],
@@ -615,6 +638,7 @@ return [
             'text' => 'Laporan',
             'url'  => 'admin/laporan',
             'icon' => 'fas fa-file-alt',
+            'can'  => 'workspace',
         ],
 
         /*

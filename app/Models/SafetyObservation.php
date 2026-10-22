@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class SafetyObservation extends Model
 {
+    use ScopedToVessel;
+
     /**
      * Kategori OSCard => badge AdminLTE.
      */

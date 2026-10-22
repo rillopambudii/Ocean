@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use App\Models\Concerns\HasPlannedSchedule;
 use Illuminate\Database\Eloquent\Model;
 
 class TrainingActivity extends Model
 {
-    use HasPlannedSchedule;
+    use HasPlannedSchedule, ScopedToVessel;
 
     /**
      * Jenis kegiatan => prefix ID — sesuai KPI di QHSE Statistic 2026.xlsx.

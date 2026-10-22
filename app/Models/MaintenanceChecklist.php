@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class MaintenanceChecklist extends Model
 {
+    use ScopedToVessel;
+
     protected $fillable = [
         'maintenance_type',
         'master_location_id',

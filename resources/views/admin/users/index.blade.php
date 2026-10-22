@@ -31,7 +31,12 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->email }}</td>
             <td>{{ $item->created_at }}</td>
-            <td>{{ $item->role }}</td>
+            <td>
+                {{ $item->role }}
+                @if($item->location)
+                    <br><small class="text-muted">{{ $item->location->name }}</small>
+                @endif
+            </td>
             <td>
                 <form action="/admin/users/{{ $item->id }}"
                       method="POST"

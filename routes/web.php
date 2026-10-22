@@ -64,9 +64,11 @@ Route::middleware(['auth'])->group(function () {
     | WEEKLY ACTION TRACKER — satu tracker lintas departemen untuk semua admin
     |--------------------------------------------------------------------------
     */
-    Route::get('admin/follow-up/{department?}', [ActionItemController::class, 'index'])->where('department', '[a-z]+');
-    Route::resource('admin/action-items', ActionItemController::class)->except(['index', 'show']);
-    Route::get('admin/action-items/{actionItem}/evidence', [ActionItemController::class, 'evidence']);
+    Route::middleware(['can:workspace'])->group(function () {
+        Route::get('admin/follow-up/{department?}', [ActionItemController::class, 'index'])->where('department', '[a-z]+');
+        Route::resource('admin/action-items', ActionItemController::class)->except(['index', 'show']);
+        Route::get('admin/action-items/{actionItem}/evidence', [ActionItemController::class, 'evidence']);
+    });
 
     Route::prefix('admin/documents/{category}')->group(function () {
         Route::get('/', [DocumentController::class, 'index']);
@@ -87,27 +89,41 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:Super Admin'])->group(function () {
         Route::resource('admin/users', UserManagementController::class);
         Route::resource('admin/master-location', MasterLocationController::class);
+    });
 
-        // Departemen Technical
+    /*
+    |--------------------------------------------------------------------------
+    | TECHNICAL, PURCHASING, CREWING
+    | Register per kapal juga dibuka untuk Admin Kapal (data tersaring ke kapalnya);
+    | Budget dan Vendor adalah data kantor, khusus admin departemen.
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['role:Admin Technical,Admin Kapal'])->group(function () {
         Route::resource('admin/vessel-surveys', VesselSurveyController::class)->except('show');
         Route::resource('admin/damage-reports', DamageReportController::class)->except('show');
+    });
 
-        // Departemen Purchasing
+    Route::middleware(['role:Admin Technical'])->group(function () {
+        Route::get('admin/budgets', [BudgetController::class, 'index']);
+        Route::get('admin/budgets/plan', [BudgetController::class, 'plan']);
+        Route::post('admin/budgets/plan', [BudgetController::class, 'savePlan']);
+    });
+
+    Route::middleware(['role:Admin Purchasing,Admin Kapal'])->group(function () {
         Route::resource('admin/purchase-requests', PurchaseRequestController::class);
         Route::get('admin/purchase-requests/{purchaseRequest}/attachment', [PurchaseRequestController::class, 'attachment']);
         Route::post('admin/purchase-requests/{purchaseRequest}/items', [PurchaseRequestController::class, 'storeItem']);
         Route::delete('admin/purchase-request-items/{item}', [PurchaseRequestController::class, 'destroyItem']);
+    });
+
+    Route::middleware(['role:Admin Purchasing'])->group(function () {
         Route::resource('admin/vendors', VendorController::class);
         Route::post('admin/vendors/{vendor}/evaluations', [VendorController::class, 'storeEvaluation']);
         Route::delete('admin/vendor-evaluations/{evaluation}', [VendorController::class, 'destroyEvaluation']);
         Route::get('admin/vendor-evaluations/{evaluation}/evidence', [VendorController::class, 'evaluationEvidence']);
+    });
 
-        // Departemen Budget Plan & Monitoring
-        Route::get('admin/budgets', [BudgetController::class, 'index']);
-        Route::get('admin/budgets/plan', [BudgetController::class, 'plan']);
-        Route::post('admin/budgets/plan', [BudgetController::class, 'savePlan']);
-
-        // Departemen Crewing
+    Route::middleware(['role:Admin Crewing,Admin Kapal'])->group(function () {
         Route::get('admin/crew-rotation', [CrewController::class, 'rotation']);
         Route::resource('admin/crews', CrewController::class);
         Route::post('admin/crews/{crew}/certificates', [CrewController::class, 'storeCertificate']);
@@ -119,7 +135,7 @@ Route::middleware(['auth'])->group(function () {
     | QHSE
     |--------------------------------------------------------------------------
     */
-    Route::middleware(['role:Admin QHSE'])->group(function () {
+    Route::middleware(['role:Admin QHSE,Admin Kapal'])->group(function () {
         Route::resource('admin/assurance-programs', AssuranceProgramController::class)->except('show');
         Route::get('admin/assurance-programs/{assuranceProgram}/evidence', [AssuranceProgramController::class, 'evidence']);
         Route::resource('admin/safety-observations', SafetyObservationController::class)->except('show');
@@ -129,6 +145,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('admin/man-hours', ManHourController::class);
         Route::resource('admin/hsse-statistics', HsseStatisticController::class);
         Route::resource('admin/incident-resume', IncidentResumeController::class);
+    });
+
+    Route::middleware(['role:Admin QHSE'])->group(function () {
         Route::resource('admin/annual-work-plans', AnnualWorkPlanController::class);
         Route::resource('admin/management-reviews', ManagementReviewController::class);
         Route::resource('admin/management-visits', ManagementVisitController::class);
@@ -167,10 +186,19 @@ Route::middleware(['auth'])->group(function () {
     | OPERATION
     |--------------------------------------------------------------------------
     */
-    Route::middleware(['role:Admin Operation'])->group(function () {
+    Route::middleware(['role:Admin Operation,Admin Kapal'])->group(function () {
         Route::resource('admin/vessel-contracts', VesselContractController::class)->except('show');
         Route::get('admin/renewal-queue', [VesselCertificateController::class, 'renewalQueue']);
         Route::resource('admin/vessel-certificates', VesselCertificateController::class);
+
+        Route::get(
+            'admin/vessel-certificates-export',
+            [VesselCertificateController::class, 'exportExcel']
+        );
+    });
+
+    // PMS & Work Orders dipakai bersama Operation dan Technical.
+    Route::middleware(['role:Admin Operation,Admin Technical,Admin Kapal'])->group(function () {
         Route::resource('admin/maintenance-checklists', MaintenanceChecklistController::class);
 
         Route::get(
@@ -186,11 +214,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post(
             'admin/maintenance-items/{id}/daily-checks',
             [MaintenanceChecklistController::class, 'storeDailyCheck']
-        );
-
-        Route::get(
-            'admin/vessel-certificates-export',
-            [VesselCertificateController::class, 'exportExcel']
         );
     });
 });

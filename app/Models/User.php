@@ -23,12 +23,40 @@ class User extends Authenticatable
      * @return array<string, string>
      */
 
+    public const ROLES = [
+        'Super Admin',
+        'Admin QHSE',
+        'Admin Operation',
+        'Admin Technical',
+        'Admin Crewing',
+        'Admin Purchasing',
+        'Admin Kapal',
+        'Management',
+    ];
+
     protected $fillable = [
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'master_location_id',
     ];
+
+    /**
+     * ID kapal yang membatasi data akun ini; null berarti tidak dibatasi.
+     * Admin Kapal tanpa kapal mendapat 0 supaya tidak melihat data apa pun.
+     */
+    public function vesselScope(): ?int
+    {
+        return $this->role === 'Admin Kapal'
+            ? (int) $this->master_location_id
+            : null;
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(MasterLocation::class, 'master_location_id');
+    }
 
     protected function casts(): array
     {

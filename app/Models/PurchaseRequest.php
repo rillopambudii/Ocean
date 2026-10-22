@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class PurchaseRequest extends Model
 {
+    use ScopedToVessel;
+
     /**
      * Kategori pembelian — dipakai juga sebagai pos anggaran di modul Budget.
      */

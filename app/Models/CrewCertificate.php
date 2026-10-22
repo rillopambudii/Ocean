@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class CrewCertificate extends Model
 {
+    use ScopedToVessel;
+
+    public const VESSEL_PARENT = 'crew';
+
     protected $fillable = [
 
         'crew_id',

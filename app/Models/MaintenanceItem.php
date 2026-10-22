@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class MaintenanceItem extends Model
 {
+    use ScopedToVessel;
+
+    public const VESSEL_PARENT = 'checklist';
+
     protected $fillable = [
         'maintenance_checklist_id',
         'equipment',

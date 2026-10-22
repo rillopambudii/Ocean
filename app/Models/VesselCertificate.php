@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class VesselCertificate extends Model
 {
+    use ScopedToVessel;
+
     protected $fillable = [
 
         'master_location_id',

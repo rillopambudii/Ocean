@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class ActionItem extends Model
 {
+    use ScopedToVessel;
+
     /**
      * Departemen => [slug URL tampilan follow-up, prefix ID, judul tampilan].
      */

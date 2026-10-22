@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class VesselContract extends Model
 {
+    use ScopedToVessel;
+
     /**
      * Status kontrak => badge AdminLTE.
      */

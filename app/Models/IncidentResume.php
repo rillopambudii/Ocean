@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class IncidentResume extends Model
 {
+    use ScopedToVessel;
+
     protected $fillable = [
 
         'investigation_number',

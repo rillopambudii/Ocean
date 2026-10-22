@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class InternalAudit extends Model
 {
+    use ScopedToVessel;
+
     protected $fillable = [
 
         'audit_type',

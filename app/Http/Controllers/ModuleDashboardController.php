@@ -24,24 +24,35 @@ use Illuminate\Support\Facades\Gate;
  */
 class ModuleDashboardController extends Controller
 {
+    /**
+     * Admin departemen, Admin Kapal (angka tersaring ke kapalnya) dan Management.
+     */
     public const GATES = [
 
         'qhse' => 'qhse-access',
 
         'operation' => 'operation-access',
 
-        'technical' => 'super-admin',
+        'technical' => 'technical-access',
 
-        'crewing' => 'super-admin',
+        'crewing' => 'crewing-access',
 
-        'purchasing' => 'super-admin',
+        'purchasing' => 'purchasing-access',
     ];
 
     public function show(string $module)
     {
-        Gate::authorize(self::GATES[$module]);
+        abort_unless(Gate::any([self::GATES[$module], 'vessel-admin', 'management']), 403);
 
-        return view('admin.module-dashboard', $this->{$module}());
+        $dashboard = $this->{$module}();
+
+        // Management hanya melihat dashboard, jadi tautan ke register disembunyikan.
+        if (Gate::denies('workspace')) {
+            $dashboard['cards'] = array_map(fn ($card) => array_replace($card, [4 => null]), $dashboard['cards']);
+            $dashboard['list']['url'] = null;
+        }
+
+        return view('admin.module-dashboard', $dashboard);
     }
 
     private function qhse(): array
@@ -120,6 +131,9 @@ class ModuleDashboardController extends Controller
 
         $year = today()->year;
 
+        // Budget data kantor: Admin Kapal melihat angka kapalnya tanpa tautan.
+        $budgetUrl = Gate::allows('technical-access') ? '/admin/budgets' : null;
+
         $actual = PurchaseRequest::with('items')
             ->where('status', 'Diterima')
             ->whereYear('received_date', $year)
@@ -133,8 +147,8 @@ class ModuleDashboardController extends Controller
                 ['Defect High', $openDefects->where('priority', 'High')->count(), 'danger', 'fas fa-fire', '/admin/damage-reports'],
                 ['Survey Terlambat', $surveys->filter(fn ($survey) => $survey->status() === 'Terlambat')->count(), 'danger', 'fas fa-anchor', '/admin/vessel-surveys'],
                 ['Survey ≤ ' . Crew::WARNING_DAYS . ' Hari', $surveys->filter(fn ($survey) => $survey->status() === 'Segera')->count(), 'warning', 'fas fa-anchor', '/admin/vessel-surveys'],
-                ['Anggaran ' . $year, 'Rp ' . number_format(Budget::where('year', $year)->sum('amount'), 0, ',', '.'), 'primary', 'fas fa-wallet', '/admin/budgets'],
-                ['Realisasi ' . $year, 'Rp ' . number_format($actual, 0, ',', '.'), 'success', 'fas fa-receipt', '/admin/budgets'],
+                ['Anggaran ' . $year, 'Rp ' . number_format(Budget::where('year', $year)->sum('amount'), 0, ',', '.'), 'primary', 'fas fa-wallet', $budgetUrl],
+                ['Realisasi ' . $year, 'Rp ' . number_format($actual, 0, ',', '.'), 'success', 'fas fa-receipt', $budgetUrl],
             ],
             'list' => [
                 'title' => 'Defect terbuka',
@@ -195,14 +209,16 @@ class ModuleDashboardController extends Controller
 
         $vendors = Vendor::with('latestEvaluation')->get();
 
+        $vendorUrl = Gate::allows('purchasing-access') ? '/admin/vendors' : null;
+
         return [
             'title' => 'Purchasing Dashboard',
             'cards' => [
                 ['PR Diajukan', $outstanding->where('status', 'Diajukan')->count(), 'secondary', 'fas fa-file-invoice', '/admin/purchase-requests'],
                 ['PR Disetujui', $outstanding->where('status', 'Disetujui')->count(), 'info', 'fas fa-check', '/admin/purchase-requests'],
                 ['PR Dipesan', $outstanding->where('status', 'Dipesan')->count(), 'primary', 'fas fa-truck', '/admin/purchase-requests'],
-                ['Vendor Belum Dievaluasi', $vendors->where('approval_status', 'To Evaluate')->count(), 'warning', 'fas fa-star-half-alt', '/admin/vendors'],
-                ['Vendor Hasil Kurang', $vendors->filter(fn ($vendor) => $vendor->latestEvaluation?->result() === 'Kurang')->count(), 'danger', 'fas fa-thumbs-down', '/admin/vendors'],
+                ['Vendor Belum Dievaluasi', $vendors->where('approval_status', 'To Evaluate')->count(), 'warning', 'fas fa-star-half-alt', $vendorUrl],
+                ['Vendor Hasil Kurang', $vendors->filter(fn ($vendor) => $vendor->latestEvaluation?->result() === 'Kurang')->count(), 'danger', 'fas fa-thumbs-down', $vendorUrl],
             ],
             'list' => [
                 'title' => 'Purchase request yang belum diterima',

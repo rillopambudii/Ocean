@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\ScopedToVessel;
 use Illuminate\Database\Eloquent\Model;
 
 class PurchaseRequestItem extends Model
 {
+    use ScopedToVessel;
+
+    public const VESSEL_PARENT = 'purchaseRequest';
+
     protected $fillable = [
 
         'purchase_request_id',
