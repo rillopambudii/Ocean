@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Data Kru')
+@section('title', 'Crew Register')
 
 @section('content_header')
-    <h1>Data Kru</h1>
+    <h1>Crew Register</h1>
 @stop
 
 @section('content')

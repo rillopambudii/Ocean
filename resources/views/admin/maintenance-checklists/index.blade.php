@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Maintenance Checklist')
+@section('title', 'PMS & Work Orders')
 
 @section('content_header')
-    <h1>Maintenance Checklist</h1>
+    <h1>PMS & Work Orders</h1>
 @stop
 
 @section('content')

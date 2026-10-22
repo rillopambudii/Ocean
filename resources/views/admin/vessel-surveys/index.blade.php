@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Docking & Survey')
+@section('title', 'Docking Plan')
 
 @section('content_header')
-    <h1>Docking & Survey</h1>
+    <h1>Docking Plan</h1>
 @stop
 
 @section('content')

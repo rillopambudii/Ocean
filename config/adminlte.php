@@ -302,214 +302,194 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | DASHBOARD
+        | WORKSPACE — satu menu per modul, submenu mengikuti tab konsep
+        | OPS Fleet Management. Akses tiap item dicek lewat 'can' (gate).
         |--------------------------------------------------------------------------
         */
 
         [
-            'text' => 'Dashboard',
-            'url'  => 'admin/dashboard',
-            'icon' => 'fas fa-home',
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | SUPER ADMIN
-        |--------------------------------------------------------------------------
-        */
-
-        [
-            'header' => 'MASTER DATA',
-            'can' => 'super-admin',
+            'header' => 'WORKSPACE',
         ],
 
         [
-            'text' => 'Master Lokasi',
-            'url'  => 'admin/master-location',
-            'icon' => 'fas fa-ship',
-            'can'  => 'super-admin',
-        ],
-
-        [
-            'header' => 'MANAGEMENT',
-            'can' => 'super-admin',
-        ],
-
-        [
-            'text' => 'User Management',
-            'url'  => 'admin/users',
-            'icon' => 'fas fa-users-cog',
-            'can'  => 'super-admin',
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | QHSE
-        |--------------------------------------------------------------------------
-        */
-
-        [
-            'header' => 'QHSE',
-            'can' => 'qhse-access',
-        ],
-
-        [
-            'text' => 'Man Hours',
-            'url'  => 'admin/man-hours',
-            'icon' => 'fas fa-clock',
-            'can'  => 'qhse-access',
-        ],
-
-        [
-            'text' => 'HSSE Statistics',
-            'url'  => 'admin/hsse-statistics',
-            'icon' => 'fas fa-chart-line',
-            'can'  => 'qhse-access',
-        ],
-
-        [
-            'text' => 'Incident Resume',
-            'url'  => 'admin/incident-resume',
-            'icon' => 'fas fa-exclamation-triangle',
-            'can'  => 'qhse-access',
-        ],
-
-        [
-            'text' => 'Annual Work Plan',
-            'url'  => 'admin/annual-work-plans',
-            'icon' => 'fas fa-calendar',
-            'can'  => 'qhse-access',
-        ],
-
-        [
-            'text' => 'Management Review',
-            'url'  => 'admin/management-reviews',
-            'icon' => 'fas fa-users-cog',
-            'can'  => 'qhse-access',
-        ],
-
-        [
-            'text' => 'Management Visit',
-            'url'  => 'admin/management-visits',
-            'icon' => 'fas fa-clipboard-check',
-            'can'  => 'qhse-access',
-        ],
-
-        [
-            'text'    => 'Dokumen QHSE',
-            'icon'    => 'fas fa-folder-open',
-            'can'     => 'qhse-access',
+            'text'    => 'Fleet Overview',
+            'icon'    => 'fas fa-th-large',
             'submenu' => [
                 [
-                    'text' => 'Manual',
-                    'url'  => 'admin/documents/manual',
-                    'icon' => 'fas fa-book',
+                    'text' => 'Executive Dashboard',
+                    'url'  => 'admin/dashboard',
+                    'icon' => 'fas fa-home',
                 ],
                 [
-                    'text' => 'Procedure',
-                    'url'  => 'admin/documents/procedure',
-                    'icon' => 'fas fa-file-alt',
+                    'text' => 'Master Data',
+                    'url'  => 'admin/master-location',
+                    'icon' => 'fas fa-ship',
+                    'can'  => 'super-admin',
                 ],
                 [
-                    'text' => 'Work Instruction',
-                    'url'  => 'admin/documents/work-instruction',
-                    'icon' => 'fas fa-file-signature',
-                ],
-                [
-                    'text' => 'Form/Checklist',
-                    'url'  => 'admin/documents/form-checklist',
-                    'icon' => 'fas fa-tasks',
+                    'text' => 'User Management',
+                    'url'  => 'admin/users',
+                    'icon' => 'fas fa-users-cog',
+                    'can'  => 'super-admin',
                 ],
             ],
         ],
 
-        /*
-        |--------------------------------------------------------------------------
-        | AUDIT
-        |--------------------------------------------------------------------------
-        */
-
         [
-            'header' => 'AUDIT',
-            'can' => 'qhse-access',
+            'text'    => 'QHSE',
+            'icon'    => 'fas fa-shield-alt',
+            'can'     => 'qhse-access',
+            'submenu' => [
+                [
+                    'text'    => 'QHSE Statistics',
+                    'icon'    => 'fas fa-chart-line',
+                    'submenu' => [
+                        [
+                            'text' => 'Man Hours',
+                            'url'  => 'admin/man-hours',
+                            'icon' => 'fas fa-clock',
+                        ],
+                        [
+                            'text' => 'HSSE Statistics',
+                            'url'  => 'admin/hsse-statistics',
+                            'icon' => 'fas fa-chart-line',
+                        ],
+                        [
+                            'text' => 'Incident Resume',
+                            'url'  => 'admin/incident-resume',
+                            'icon' => 'fas fa-exclamation-triangle',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Annual Work Plan',
+                    'url'  => 'admin/annual-work-plans',
+                    'icon' => 'fas fa-calendar',
+                ],
+                [
+                    'text' => 'Management Review',
+                    'url'  => 'admin/management-reviews',
+                    'icon' => 'fas fa-users-cog',
+                ],
+                [
+                    'text' => 'Management Visit',
+                    'url'  => 'admin/management-visits',
+                    'icon' => 'fas fa-clipboard-check',
+                ],
+                [
+                    'text'    => 'Audit & NC Register',
+                    'icon'    => 'fas fa-search',
+                    'submenu' => [
+                        [
+                            'text' => 'Checklist Template',
+                            'url'  => 'admin/audit-checklist-templates',
+                            'icon' => 'fas fa-list',
+                        ],
+                        [
+                            'text' => 'Internal Audit',
+                            'url'  => 'admin/internal-audits',
+                            'icon' => 'fas fa-search',
+                        ],
+                        [
+                            'text' => 'Audit Findings (NC)',
+                            'url'  => 'admin/audit-findings',
+                            'icon' => 'fas fa-exclamation-circle',
+                        ],
+                    ],
+                ],
+                [
+                    'text'    => 'Dokumen QHSE',
+                    'icon'    => 'fas fa-folder-open',
+                    'submenu' => [
+                        [
+                            'text' => 'Manual',
+                            'url'  => 'admin/documents/manual',
+                            'icon' => 'fas fa-book',
+                        ],
+                        [
+                            'text' => 'Procedure',
+                            'url'  => 'admin/documents/procedure',
+                            'icon' => 'fas fa-file-alt',
+                        ],
+                        [
+                            'text' => 'Work Instruction',
+                            'url'  => 'admin/documents/work-instruction',
+                            'icon' => 'fas fa-file-signature',
+                        ],
+                        [
+                            'text' => 'Form/Checklist',
+                            'url'  => 'admin/documents/form-checklist',
+                            'icon' => 'fas fa-tasks',
+                        ],
+                    ],
+                ],
+            ],
         ],
 
         [
-            'text' => 'Checklist Template',
-            'url'  => 'admin/audit-checklist-templates',
-            'icon' => 'fas fa-list',
-            'can'  => 'qhse-access',
+            'text'    => 'Operation',
+            'icon'    => 'fas fa-ship',
+            'can'     => 'operation-access',
+            'submenu' => [
+                [
+                    'text' => 'Certificate Register',
+                    'url'  => 'admin/vessel-certificates',
+                    'icon' => 'fas fa-certificate',
+                ],
+            ],
         ],
 
-        [
-            'text' => 'Internal Audit',
-            'url'  => 'admin/internal-audits',
-            'icon' => 'fas fa-search',
-            'can'  => 'qhse-access',
-        ],
-
-        [
-            'text' => 'Audit Findings',
-            'url'  => 'admin/audit-findings',
-            'icon' => 'fas fa-exclamation-circle',
-            'can'  => 'qhse-access',
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | OPERATION
-        |--------------------------------------------------------------------------
-        */
-
-        [
-            'header' => 'OPERATION',
-            'can' => 'operation-access',
-        ],
-
-        [
-            'text' => 'Certificate Monitoring',
-            'url'  => 'admin/vessel-certificates',
-            'icon' => 'fas fa-certificate',
-            'can'  => 'operation-access',
-        ],
-
-        [
-            'text' => 'Maintenance Checklist',
-            'url'  => 'admin/maintenance-checklists',
-            'icon' => 'fas fa-tools',
-            'can'  => 'operation-access',
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | DEPARTEMEN (penyimpanan dokumen)
-        |--------------------------------------------------------------------------
-        */
-
-        [
-            'header' => 'DEPARTEMEN',
-            'can' => 'super-admin',
-        ],
-
+        // Admin Operation tetap melihat Technical untuk PMS & Work Orders;
+        // item lain khusus Super Admin.
         [
             'text'    => 'Technical',
             'icon'    => 'fas fa-cogs',
-            'can'     => 'super-admin',
+            'can'     => 'operation-access',
             'submenu' => [
                 [
-                    'text' => 'Docking & Survey',
+                    'text' => 'Docking Plan',
                     'url'  => 'admin/vessel-surveys',
                     'icon' => 'fas fa-anchor',
+                    'can'  => 'super-admin',
                 ],
                 [
-                    'text' => 'Laporan Kerusakan',
+                    'text' => 'Defect Register',
                     'url'  => 'admin/damage-reports',
+                    'icon' => 'fas fa-exclamation-triangle',
+                    'can'  => 'super-admin',
+                ],
+                [
+                    'text' => 'PMS & Work Orders',
+                    'url'  => 'admin/maintenance-checklists',
                     'icon' => 'fas fa-tools',
                 ],
                 [
-                    'text' => 'Dokumen',
+                    'text'    => 'Budget Planning & Monitoring',
+                    'icon'    => 'fas fa-wallet',
+                    'can'     => 'super-admin',
+                    'submenu' => [
+                        [
+                            'text' => 'Monitoring',
+                            'url'  => 'admin/budgets',
+                            'icon' => 'fas fa-chart-bar',
+                        ],
+                        [
+                            'text' => 'Atur Anggaran',
+                            'url'  => 'admin/budgets/plan',
+                            'icon' => 'fas fa-edit',
+                        ],
+                        [
+                            'text' => 'Dokumen Budget',
+                            'url'  => 'admin/documents/budget',
+                            'icon' => 'fas fa-folder-open',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Dokumen Technical',
                     'url'  => 'admin/documents/technical',
                     'icon' => 'fas fa-folder-open',
+                    'can'  => 'super-admin',
                 ],
             ],
         ],
@@ -520,12 +500,12 @@ return [
             'can'     => 'super-admin',
             'submenu' => [
                 [
-                    'text' => 'Data Kru',
+                    'text' => 'Crew Register',
                     'url'  => 'admin/crews',
                     'icon' => 'fas fa-id-card',
                 ],
                 [
-                    'text' => 'Dokumen',
+                    'text' => 'Dokumen Crewing',
                     'url'  => 'admin/documents/crewing',
                     'icon' => 'fas fa-folder-open',
                 ],
@@ -538,49 +518,16 @@ return [
             'can'     => 'super-admin',
             'submenu' => [
                 [
-                    'text' => 'Permintaan Pembelian',
+                    'text' => 'Vessel Requisitions',
                     'url'  => 'admin/purchase-requests',
                     'icon' => 'fas fa-file-invoice',
                 ],
                 [
-                    'text' => 'Dokumen',
+                    'text' => 'Dokumen Purchasing',
                     'url'  => 'admin/documents/purchasing',
                     'icon' => 'fas fa-folder-open',
                 ],
             ],
-        ],
-
-        [
-            'text'    => 'Budget Plan & Monitoring',
-            'icon'    => 'fas fa-wallet',
-            'can'     => 'super-admin',
-            'submenu' => [
-                [
-                    'text' => 'Monitoring',
-                    'url'  => 'admin/budgets',
-                    'icon' => 'fas fa-chart-bar',
-                ],
-                [
-                    'text' => 'Atur Anggaran',
-                    'url'  => 'admin/budgets/plan',
-                    'icon' => 'fas fa-edit',
-                ],
-                [
-                    'text' => 'Dokumen',
-                    'url'  => 'admin/documents/budget',
-                    'icon' => 'fas fa-folder-open',
-                ],
-            ],
-        ],
-
-        /*
-        |--------------------------------------------------------------------------
-        | REPORT
-        |--------------------------------------------------------------------------
-        */
-
-        [
-            'header' => 'REPORT',
         ],
 
         [

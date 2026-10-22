@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Permintaan Pembelian')
+@section('title', 'Vessel Requisitions')
 
 @section('content_header')
-    <h1>Permintaan Pembelian</h1>
+    <h1>Vessel Requisitions</h1>
 @stop
 
 @section('content')

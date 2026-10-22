@@ -1,9 +1,9 @@
 @extends('layouts.admin')
 
-@section('title', 'Certificate Monitoring')
+@section('title', 'Certificate Register')
 
 @section('content_header')
-    <h1>Certificate Monitoring</h1>
+    <h1>Certificate Register</h1>
 @stop
 
 @section('content')
