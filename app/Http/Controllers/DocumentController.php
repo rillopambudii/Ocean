@@ -9,7 +9,7 @@ use App\Models\Document;
 
 class DocumentController extends Controller
 {
-    private const FILE_RULES = 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png|max:20480';
+    public const FILE_RULES = 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png|max:20480';
 
     public function index(Request $request, string $category)
     {

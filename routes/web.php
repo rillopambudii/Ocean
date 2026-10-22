@@ -21,6 +21,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\CrewController;
 use App\Http\Controllers\VesselSurveyController;
 use App\Http\Controllers\DamageReportController;
+use App\Http\Controllers\PurchaseRequestController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -69,6 +70,12 @@ Route::middleware(['auth'])->group(function () {
         // Departemen Technical
         Route::resource('admin/vessel-surveys', VesselSurveyController::class)->except('show');
         Route::resource('admin/damage-reports', DamageReportController::class)->except('show');
+
+        // Departemen Purchasing
+        Route::resource('admin/purchase-requests', PurchaseRequestController::class);
+        Route::get('admin/purchase-requests/{purchaseRequest}/attachment', [PurchaseRequestController::class, 'attachment']);
+        Route::post('admin/purchase-requests/{purchaseRequest}/items', [PurchaseRequestController::class, 'storeItem']);
+        Route::delete('admin/purchase-request-items/{item}', [PurchaseRequestController::class, 'destroyItem']);
 
         // Departemen Crewing
         Route::resource('admin/crews', CrewController::class);

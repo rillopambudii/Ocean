@@ -533,10 +533,21 @@ return [
         ],
 
         [
-            'text' => 'Purchasing',
-            'url'  => 'admin/documents/purchasing',
-            'icon' => 'fas fa-shopping-cart',
-            'can'  => 'super-admin',
+            'text'    => 'Purchasing',
+            'icon'    => 'fas fa-shopping-cart',
+            'can'     => 'super-admin',
+            'submenu' => [
+                [
+                    'text' => 'Permintaan Pembelian',
+                    'url'  => 'admin/purchase-requests',
+                    'icon' => 'fas fa-file-invoice',
+                ],
+                [
+                    'text' => 'Dokumen',
+                    'url'  => 'admin/documents/purchasing',
+                    'icon' => 'fas fa-folder-open',
+                ],
+            ],
         ],
 
         [
