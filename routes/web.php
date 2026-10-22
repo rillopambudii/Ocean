@@ -30,6 +30,7 @@ use App\Http\Controllers\TrainingActivityController;
 use App\Http\Controllers\ActionItemController;
 use App\Http\Controllers\VesselContractController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -68,6 +69,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/follow-up/{department?}', [ActionItemController::class, 'index'])->where('department', '[a-z]+');
         Route::resource('admin/action-items', ActionItemController::class)->except(['index', 'show']);
         Route::get('admin/action-items/{actionItem}/evidence', [ActionItemController::class, 'evidence']);
+
+        // Laporan Excel / PDF; daftar laporan disaring per gate di controller.
+        Route::get('admin/laporan', [ReportController::class, 'index']);
+        Route::get('admin/laporan/export', [ReportController::class, 'export']);
     });
 
     Route::prefix('admin/documents/{category}')->group(function () {
