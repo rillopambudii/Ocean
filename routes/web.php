@@ -23,6 +23,7 @@ use App\Http\Controllers\VesselSurveyController;
 use App\Http\Controllers\DamageReportController;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\BudgetController;
+use App\Http\Controllers\AssuranceProgramController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -95,6 +96,8 @@ Route::middleware(['auth'])->group(function () {
     |--------------------------------------------------------------------------
     */
     Route::middleware(['role:Admin QHSE'])->group(function () {
+        Route::resource('admin/assurance-programs', AssuranceProgramController::class)->except('show');
+        Route::get('admin/assurance-programs/{assuranceProgram}/evidence', [AssuranceProgramController::class, 'evidence']);
         Route::resource('admin/man-hours', ManHourController::class);
         Route::resource('admin/hsse-statistics', HsseStatisticController::class);
         Route::resource('admin/incident-resume', IncidentResumeController::class);

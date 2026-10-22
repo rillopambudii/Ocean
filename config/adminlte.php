@@ -341,6 +341,11 @@ return [
             'can'     => 'qhse-access',
             'submenu' => [
                 [
+                    'text' => 'Assurance Program',
+                    'url'  => 'admin/assurance-programs',
+                    'icon' => 'fas fa-clipboard-list',
+                ],
+                [
                     'text'    => 'QHSE Statistics',
                     'icon'    => 'fas fa-chart-line',
                     'submenu' => [
