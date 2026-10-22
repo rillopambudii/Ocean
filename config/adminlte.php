@@ -551,10 +551,26 @@ return [
         ],
 
         [
-            'text' => 'Budget Plan & Monitoring',
-            'url'  => 'admin/documents/budget',
-            'icon' => 'fas fa-wallet',
-            'can'  => 'super-admin',
+            'text'    => 'Budget Plan & Monitoring',
+            'icon'    => 'fas fa-wallet',
+            'can'     => 'super-admin',
+            'submenu' => [
+                [
+                    'text' => 'Monitoring',
+                    'url'  => 'admin/budgets',
+                    'icon' => 'fas fa-chart-bar',
+                ],
+                [
+                    'text' => 'Atur Anggaran',
+                    'url'  => 'admin/budgets/plan',
+                    'icon' => 'fas fa-edit',
+                ],
+                [
+                    'text' => 'Dokumen',
+                    'url'  => 'admin/documents/budget',
+                    'icon' => 'fas fa-folder-open',
+                ],
+            ],
         ],
 
         /*

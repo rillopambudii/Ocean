@@ -149,6 +149,24 @@ window.OceanCharts = (function () {
         });
     }
 
+    // Bar berkelompok untuk membandingkan beberapa seri, mis. anggaran vs realisasi.
+    // datasets: [{ label, data, color? }]
+    function compare(id, labels, datasets) {
+        if (datasets.every(function (d) { return isEmpty(d.data); })) { showEmpty(id); return null; }
+        return make(id, {
+            type: 'bar',
+            data: { labels: labels, datasets: datasets.map(function (d, i) {
+                return { label: d.label, data: d.data, backgroundColor: d.color || CATEGORICAL[i % CATEGORICAL.length],
+                    borderRadius: 4, maxBarThickness: 32 };
+            }) },
+            options: { responsive: true, maintainAspectRatio: false,
+                plugins: { tooltip: { callbacks: { label: function (ctx) {
+                    return ' ' + ctx.dataset.label + ': ' + nf.format(ctx.parsed.y);
+                } } } },
+                scales: axisScales() }
+        });
+    }
+
     // Re-warnai teks/grid saat tema berubah
     function onThemeChange() {
         var t = theme();
@@ -169,5 +187,5 @@ window.OceanCharts = (function () {
     window.addEventListener('ocean:themechange', onThemeChange);
 
     applyDefaults();
-    return { line: line, bar: bar, proportion: proportion, colorFor: colorFor, nf: nf };
+    return { line: line, bar: bar, compare: compare, proportion: proportion, colorFor: colorFor, nf: nf };
 })();

@@ -22,6 +22,7 @@ use App\Http\Controllers\CrewController;
 use App\Http\Controllers\VesselSurveyController;
 use App\Http\Controllers\DamageReportController;
 use App\Http\Controllers\PurchaseRequestController;
+use App\Http\Controllers\BudgetController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -76,6 +77,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/purchase-requests/{purchaseRequest}/attachment', [PurchaseRequestController::class, 'attachment']);
         Route::post('admin/purchase-requests/{purchaseRequest}/items', [PurchaseRequestController::class, 'storeItem']);
         Route::delete('admin/purchase-request-items/{item}', [PurchaseRequestController::class, 'destroyItem']);
+
+        // Departemen Budget Plan & Monitoring
+        Route::get('admin/budgets', [BudgetController::class, 'index']);
+        Route::get('admin/budgets/plan', [BudgetController::class, 'plan']);
+        Route::post('admin/budgets/plan', [BudgetController::class, 'savePlan']);
 
         // Departemen Crewing
         Route::resource('admin/crews', CrewController::class);
