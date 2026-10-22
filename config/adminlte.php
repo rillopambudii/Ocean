@@ -346,6 +346,11 @@ return [
             'can'     => 'qhse-access',
             'submenu' => [
                 [
+                    'text' => 'QHSE Dashboard',
+                    'url'  => 'admin/dashboards/qhse',
+                    'icon' => 'fas fa-tachometer-alt',
+                ],
+                [
                     'text' => 'Assurance Program',
                     'url'  => 'admin/assurance-programs',
                     'icon' => 'fas fa-clipboard-list',
@@ -452,6 +457,11 @@ return [
             'can'     => 'operation-access',
             'submenu' => [
                 [
+                    'text' => 'Operation Dashboard',
+                    'url'  => 'admin/dashboards/operation',
+                    'icon' => 'fas fa-tachometer-alt',
+                ],
+                [
                     'text' => 'Hire & Contract Status',
                     'url'  => 'admin/vessel-contracts',
                     'icon' => 'fas fa-file-contract',
@@ -481,6 +491,12 @@ return [
             'icon'    => 'fas fa-cogs',
             'can'     => 'operation-access',
             'submenu' => [
+                [
+                    'text' => 'Technical Dashboard',
+                    'url'  => 'admin/dashboards/technical',
+                    'icon' => 'fas fa-tachometer-alt',
+                    'can'  => 'super-admin',
+                ],
                 [
                     'text' => 'Repair Follow-up',
                     'url'  => 'admin/follow-up/technical',
@@ -540,6 +556,11 @@ return [
             'can'     => 'super-admin',
             'submenu' => [
                 [
+                    'text' => 'Crewing Dashboard',
+                    'url'  => 'admin/dashboards/crewing',
+                    'icon' => 'fas fa-tachometer-alt',
+                ],
+                [
                     'text' => 'Crew Register',
                     'url'  => 'admin/crews',
                     'icon' => 'fas fa-id-card',
@@ -562,6 +583,11 @@ return [
             'icon'    => 'fas fa-shopping-cart',
             'can'     => 'super-admin',
             'submenu' => [
+                [
+                    'text' => 'Purchasing Dashboard',
+                    'url'  => 'admin/dashboards/purchasing',
+                    'icon' => 'fas fa-tachometer-alt',
+                ],
                 [
                     'text' => 'Procurement Follow-up',
                     'url'  => 'admin/follow-up/purchasing',

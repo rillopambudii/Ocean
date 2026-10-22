@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ModuleDashboardController;
 use App\Http\Controllers\PublicDashboardController;
 use App\Http\Controllers\MasterLocationController;
 use App\Http\Controllers\ManHourController;
@@ -48,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
         '/admin/dashboard',
         [DashboardController::class, 'index']
     )->name('dashboard');
+
+    // Dashboard per modul; hak akses dicek lewat gate di controller.
+    Route::get('admin/dashboards/{module}', [ModuleDashboardController::class, 'show'])
+        ->whereIn('module', array_keys(ModuleDashboardController::GATES));
 
     /*
     |--------------------------------------------------------------------------
