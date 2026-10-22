@@ -36,3 +36,6 @@ Thumbs.db
 # Artefak deploy yang TIDAK boleh masuk repo (rahasia / dump data)
 /deploy/oceanindo_database.sql
 /deploy/*.bak-8.4
+
+# File Excel sumber data (lokal saja)
+/public/Data/
