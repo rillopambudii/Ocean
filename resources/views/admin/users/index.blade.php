@@ -8,6 +8,12 @@
 
 @section('content')
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <a href="/admin/users/create" class="btn btn-primary mb-3">
     Tambah User
 </a>
@@ -38,8 +44,13 @@
                 @endif
             </td>
             <td>
+                <a href="/admin/users/{{ $item->id }}/edit" class="btn btn-warning btn-sm mb-1">
+                    Edit
+                </a>
+
                 <form action="/admin/users/{{ $item->id }}"
                       method="POST"
+                      class="d-inline"
                       onsubmit="return confirm('Hapus user ini?')">
                     @csrf
                     @method('DELETE')

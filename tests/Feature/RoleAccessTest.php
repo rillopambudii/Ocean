@@ -7,6 +7,7 @@ use App\Models\CrewCertificate;
 use App\Models\MasterLocation;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use JeroenNoten\LaravelAdminLte\AdminLte;
 use Tests\TestCase;
 
@@ -137,5 +138,41 @@ class RoleAccessTest extends TestCase
         $this->actingAs($super)->post('/admin/users', ['role' => 'Raja'] + $data)->assertSessionHasErrors('role');
 
         $this->assertSame($this->astrid->id, User::where('email', 'astrid@example.com')->value('master_location_id'));
+    }
+
+    public function test_super_admin_can_edit_user_role_vessel_and_password(): void
+    {
+        $super = $this->user('Super Admin');
+        $user = $this->user('Admin Kapal', $this->astrid);
+        $oldPassword = $user->password;
+
+        $this->actingAs($super)->get("/admin/users/{$user->id}/edit")->assertOk()->assertSee($user->email);
+
+        $data = ['name' => 'Admin Bima', 'email' => $user->email, 'password' => '', 'role' => 'Admin Kapal', 'master_location_id' => $this->bima->id];
+
+        $this->actingAs($super)->put("/admin/users/{$user->id}", $data)->assertRedirect('/admin/users');
+        $user->refresh();
+        $this->assertSame([$this->bima->id, 'Admin Bima', $oldPassword], [$user->master_location_id, $user->name, $user->password]);
+
+        // Pindah role: kapal dilepas, password baru di-hash.
+        $this->actingAs($super)->put("/admin/users/{$user->id}", ['role' => 'Management', 'password' => 'passwordbaru'] + $data);
+        $user->refresh();
+        $this->assertSame('Management', $user->role);
+        $this->assertNull($user->master_location_id);
+        $this->assertTrue(Hash::check('passwordbaru', $user->password));
+
+        // Email tidak boleh dipakai user lain.
+        $this->actingAs($super)->put("/admin/users/{$user->id}", ['email' => $super->email] + $data)->assertSessionHasErrors('email');
+    }
+
+    public function test_super_admin_cannot_change_own_role(): void
+    {
+        $super = $this->user('Super Admin');
+
+        $this->actingAs($super)->put("/admin/users/{$super->id}", [
+            'name' => 'Super', 'email' => $super->email, 'role' => 'Management',
+        ])->assertRedirect('/admin/users');
+
+        $this->assertSame('Super Admin', $super->fresh()->role);
     }
 }
