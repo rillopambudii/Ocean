@@ -76,7 +76,7 @@
         <div class="sec-head"><h2 class="ds-h2">Brand</h2><small>MASTER §1</small></div>
         <div class="grid cols-3">
             <div class="ds-card stack">
-                <span class="ds-label">Marine Blue — Primary</span>
+                <span class="ds-label">Ocean Blue — Primary</span>
                 <div style="height:48px;border-radius:var(--radius-sm);background:var(--color-primary-600);"></div>
                 <span class="hex ds-mono" data-var="--color-primary-600"></span>
             </div>
@@ -287,10 +287,10 @@
         else{ root.removeAttribute('data-theme'); btnIcon.innerHTML=MOON; btnText.textContent='Dark'; }
         refreshHex();
     }
-    applyTheme(localStorage.getItem('pklp-theme') || 'light');
+    applyTheme(localStorage.getItem('ocean-theme') || 'light');
     document.getElementById('themeToggle').addEventListener('click', function(){
         var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        localStorage.setItem('pklp-theme', next);
+        localStorage.setItem('ocean-theme', next);
         applyTheme(next);
     });
 </script>

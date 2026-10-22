@@ -9,5 +9,5 @@
 @extends('adminlte::page')
 
 @section('adminlte_css_pre')
-    <script>try{if(localStorage.getItem('pklp-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
+    <script>try{if(localStorage.getItem('ocean-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
 @stop

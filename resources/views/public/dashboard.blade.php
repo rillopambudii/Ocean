@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/design-tokens.css') }}" rel="stylesheet">
     {{-- anti-flash: terapkan tema sebelum paint --}}
-    <script>try{if(localStorage.getItem('pklp-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
+    <script>try{if(localStorage.getItem('ocean-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -393,18 +393,18 @@
 <script src="{{ asset('js/chart-helpers.js') }}"></script>
 <script>
     // Helper bersama (chart-helpers.js): theme-aware, status colors, empty-state, tooltip locale.
-    PKLPCharts.line('incidentChart', @json($incidentMonths), @json($incidentTotals), { label: 'Total Incident' });
-    PKLPCharts.proportion('hsseCategoryChart', @json($hsseCategoryLabels), @json($hsseCategoryTotals));
-    PKLPCharts.line('manHourChart', @json($manHourMonths), @json($manHourTotals), { label: 'Man Hours' });
+    OceanCharts.line('incidentChart', @json($incidentMonths), @json($incidentTotals), { label: 'Total Incident' });
+    OceanCharts.proportion('hsseCategoryChart', @json($hsseCategoryLabels), @json($hsseCategoryTotals));
+    OceanCharts.line('manHourChart', @json($manHourMonths), @json($manHourTotals), { label: 'Man Hours' });
 
-    PKLPCharts.proportion('findingTypeChart', @json($findingTypeLabels), @json($findingTypeTotals));
-    PKLPCharts.proportion('findingStatusChart', @json($findingStatusLabels), @json($findingStatusTotals));
+    OceanCharts.proportion('findingTypeChart', @json($findingTypeLabels), @json($findingTypeTotals));
+    OceanCharts.proportion('findingStatusChart', @json($findingStatusLabels), @json($findingStatusTotals));
 
-    PKLPCharts.proportion('reviewChart', @json($reviewLabels), @json($reviewTotals));
-    PKLPCharts.proportion('visitChart', @json($visitLabels), @json($visitTotals));
+    OceanCharts.proportion('reviewChart', @json($reviewLabels), @json($reviewTotals));
+    OceanCharts.proportion('visitChart', @json($visitLabels), @json($visitTotals));
 
-    PKLPCharts.proportion('certificateChart', @json($certificateLabels), @json($certificateTotals));
-    PKLPCharts.proportion('maintenanceChart', @json($maintenanceLabels), @json($maintenanceTotals));
+    OceanCharts.proportion('certificateChart', @json($certificateLabels), @json($certificateTotals));
+    OceanCharts.proportion('maintenanceChart', @json($maintenanceLabels), @json($maintenanceTotals));
 </script>
 
 <script src="{{ asset('js/theme-toggle.js') }}"></script>

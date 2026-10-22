@@ -17,6 +17,7 @@ use App\Http\Controllers\AuditChecklistTemplateController;
 use App\Http\Controllers\VesselCertificateController;
 use App\Http\Controllers\MaintenanceChecklistController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\DocumentController;
 
 Route::get('/', function () {
     return redirect()->route('landing');
@@ -36,6 +37,21 @@ Route::middleware(['auth'])->group(function () {
         '/admin/dashboard',
         [DashboardController::class, 'index']
     )->name('dashboard');
+
+    /*
+    |--------------------------------------------------------------------------
+    | DOKUMEN (QHSE & DEPARTEMEN) — hak akses dicek per kategori di controller
+    |--------------------------------------------------------------------------
+    */
+    Route::prefix('admin/documents/{category}')->group(function () {
+        Route::get('/', [DocumentController::class, 'index']);
+        Route::get('/create', [DocumentController::class, 'create']);
+        Route::post('/', [DocumentController::class, 'store']);
+        Route::get('/{id}/edit', [DocumentController::class, 'edit'])->whereNumber('id');
+        Route::put('/{id}', [DocumentController::class, 'update'])->whereNumber('id');
+        Route::delete('/{id}', [DocumentController::class, 'destroy'])->whereNumber('id');
+        Route::get('/{id}/file', [DocumentController::class, 'download'])->whereNumber('id');
+    });
 
     
     /*

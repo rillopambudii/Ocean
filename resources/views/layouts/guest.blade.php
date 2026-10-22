@@ -10,7 +10,7 @@
     {{-- Alpine.js via CDN (komponen dropdown/modal) — tanpa npm/build --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     {{-- anti-flash: terapkan tema sebelum paint --}}
-    <script>try{if(localStorage.getItem('pklp-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
+    <script>try{if(localStorage.getItem('ocean-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}</script>
 
     <style>
         /* Token-driven (design-system/MASTER.md). Light + dark-ready. */

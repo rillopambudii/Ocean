@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/design-tokens.css') }}" rel="stylesheet">
     {{-- anti-flash: terapkan tema sebelum paint --}}
-    <script>try { if (localStorage.getItem('pklp-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { }</script>
+    <script>try { if (localStorage.getItem('ocean-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) { }</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -744,9 +744,9 @@
             defs.forEach(function (c) {
                 var opts = c.opts || {};
                 if (c.type === 'line') {
-                    PKLPCharts.line(c.cid, c.labels, c.data, opts);
+                    OceanCharts.line(c.cid, c.labels, c.data, opts);
                 } else {
-                    PKLPCharts.proportion(c.cid, c.labels, c.data, opts);
+                    OceanCharts.proportion(c.cid, c.labels, c.data, opts);
                 }
             });
         }());

@@ -254,23 +254,23 @@
 <script src="{{ asset('js/chart-helpers.js') }}"></script>
 <script>
     // QHSE
-    PKLPCharts.line('incidentChart', @json($incidentMonths), @json($incidentTotals), { label: 'Total Incident' });
-    PKLPCharts.bar('hsseCategoryChart', @json($hsseCategoryLabels), @json($hsseCategoryTotals), {
+    OceanCharts.line('incidentChart', @json($incidentMonths), @json($incidentTotals), { label: 'Total Incident' });
+    OceanCharts.bar('hsseCategoryChart', @json($hsseCategoryLabels), @json($hsseCategoryTotals), {
         label: 'HSSE Category',
         colors: ['#16A34A','#22C55E','#F59E0B','#F97316','#FB923C','#EF4444','#DC2626','#7F1D1D']
     });
 
     // Audit
-    PKLPCharts.proportion('findingChart', @json($findingTypes), @json($findingTotals));
-    PKLPCharts.proportion('findingStatusChart', @json($findingStatusLabels), @json($findingStatusTotals));
+    OceanCharts.proportion('findingChart', @json($findingTypes), @json($findingTotals));
+    OceanCharts.proportion('findingStatusChart', @json($findingStatusLabels), @json($findingStatusTotals));
 
     // Management
-    PKLPCharts.proportion('reviewStatusChart', @json($reviewStatusLabels), @json($reviewStatusTotals));
-    PKLPCharts.proportion('visitStatusChart', @json($visitStatusLabels), @json($visitStatusTotals));
+    OceanCharts.proportion('reviewStatusChart', @json($reviewStatusLabels), @json($reviewStatusTotals));
+    OceanCharts.proportion('visitStatusChart', @json($visitStatusLabels), @json($visitStatusTotals));
 
     // Operation
-    PKLPCharts.proportion('certificateChart', @json($certificateLabels), @json($certificateTotals));
-    PKLPCharts.proportion('maintenanceChart', @json($maintenanceLabels), @json($maintenanceTotals));
+    OceanCharts.proportion('certificateChart', @json($certificateLabels), @json($certificateTotals));
+    OceanCharts.proportion('maintenanceChart', @json($maintenanceLabels), @json($maintenanceTotals));
 </script>
 @stop
 @include('partials.logout-script')
